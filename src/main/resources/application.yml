@@ -9,3 +9,8 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 server:
   port: 8081
+jwt:
+  secret: f4e2e52034348f86b67cde581c0f9eb5
+  # 5 * 60 * 60 = 五小时
+  expire: 18000
+  header: Authorization
