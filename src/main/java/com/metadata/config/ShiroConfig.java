@@ -1,6 +1,5 @@
 package com.metadata.config;
 
-
 import com.metadata.shiro.AccountRealm;
 import com.metadata.shiro.JwtFilter;
 import org.apache.shiro.mgt.SecurityManager;
