@@ -6,7 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//@Mapper
+@Mapper
+//@Repository
 public interface UserMapper {
     List<User> queryUserList();
 }
