@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
 public interface UserService {
-    public User getById(int id);
-    public List<User> getAllUsers();
+    public User getById(String username);
+
+    public User getByUsername(String username);
+
+    public User create(String username, String password);
 }
