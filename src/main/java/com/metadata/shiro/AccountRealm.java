@@ -36,16 +36,18 @@ public class AccountRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtToken jwtToken = (JwtToken) token;   // 已经获得了 jwt
 
+        // 获取 userId
         String userId = jwtUtils.getClaimByToken((String) jwtToken.getPrincipal()).getSubject();
 
-        User user = userService.getById(Integer.parseInt(userId));
+        // 查出用户
+        User user = userService.getById(userId);   // 这里其实是通过用户名来获取用户
 
         // 用户不存在
         if (user == null) {
             throw new UnknownAccountException("账户不存在");
         }
 
-        // 用户被锁
+        // 用户被锁，这里没有这个设置
         if (user.getIdentify() == -1) {
             throw new LockedAccountException("账户已被锁定");
         }
