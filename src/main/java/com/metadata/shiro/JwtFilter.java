@@ -52,6 +52,7 @@ public class JwtFilter extends AuthenticatingFilter {
         }
     }
 
+    // 重写 onLoginFailure 方法，因为返回数据自定义为 Result 了
     @Override
     protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
@@ -60,12 +61,12 @@ public class JwtFilter extends AuthenticatingFilter {
 
         Result result = Result.fail(throwable.getMessage());
 
-        String json = JSONUtil.toJsonStr(result);
+        String json = JSONUtil.toJsonStr(result);   // 使用 hutool 工具
 
         try {
             httpServletResponse.getWriter().print(json);
         } catch (IOException ioException) {
-            // ...
+            // ioException.printStackTrace();
         }
         return false;
     }
