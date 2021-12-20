@@ -4,25 +4,25 @@ import com.metadata.common.lang.Result;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("projects")
-public class ProjectController {
+@RequestMapping("textbooks")
+public class TextbookController {
     @GetMapping("select")
-    public Result selectProject() {
+    public Result selectTextbook() {
         return null;
     }
 
     @PostMapping("add")
-    public Result addProject() {
+    public Result addTextbook() {
         return null;
     }
 
     @PutMapping("update")
-    public Result updateProject() {
+    public Result updateTextbook() {
         return null;
     }
 
     @DeleteMapping("delete")
-    public Result deleteProject() {
+    public Result deleteTextbook() {
         return null;
     }
 }
