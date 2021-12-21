@@ -1,8 +1,10 @@
 DROP database IF EXISTS metadata;
+
 CREATE database metadata;
+
 use metadata;
 
-create table metadata.batch
+create table batch
 (
     id         int auto_increment comment 'id'
         primary key,
@@ -14,7 +16,7 @@ create table metadata.batch
         unique (id)
 );
 
-create table metadata.project
+create table project
 (
     id                    int auto_increment comment 'id'
         primary key,
@@ -36,7 +38,7 @@ create table metadata.project
         unique (id)
 );
 
-create table metadata.sp
+create table sp
 (
     id          int auto_increment comment 'id'
         primary key,
@@ -48,7 +50,7 @@ create table metadata.sp
         unique (id)
 );
 
-create table metadata.textbook
+create table textbook
 (
     id               int auto_increment comment 'id'
         primary key,
@@ -65,13 +67,13 @@ create table metadata.textbook
         unique (id)
 );
 
-create table metadata.user
+create table user
 (
-    username varchar(30) not null comment '我们用手机号来作为用户名'
+    phone    varchar(30) not null comment '用户电话作为主键'
         primary key,
-    password varchar(30) not null comment '密码',
-    nickname varchar(30) null comment '昵称，可以随便起，允许重复',
-    identify int         null comment '1：超级管理员，2：管理员，3：用户',
-    constraint user_username_uindex
-        unique (username)
+    password varchar(30) not null,
+    username varchar(30) null,
+    identify int         null comment '用户权限，1 表示超级管理员，2 表示管理员，3 表示用户',
+    constraint user_phone_uindex
+        unique (phone)
 );
