@@ -6,23 +6,18 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("projects")
 public class ProjectController {
-    @GetMapping("select")
-    public Result selectProject() {
+    @GetMapping
+    public Result selectProjectByProjectName() {
         return null;
     }
 
-    @PostMapping("add")
-    public Result addProject() {
+    @DeleteMapping
+    public Result deleteProjectById() {
         return null;
     }
 
-    @PutMapping("update")
-    public Result updateProject() {
-        return null;
-    }
-
-    @DeleteMapping("delete")
-    public Result deleteProject() {
+    @PutMapping
+    public Result editProjectById() {
         return null;
     }
 }

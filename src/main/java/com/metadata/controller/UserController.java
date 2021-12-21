@@ -1,33 +1,37 @@
 package com.metadata.controller;
 
 import com.metadata.common.lang.Result;
+import com.metadata.entity.User;
+import com.metadata.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("users")
 public class UserController {
-    @GetMapping("select")
-    public Result selectUser() {
+
+    @Autowired
+    UserService userService;
+
+    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+
+    @PutMapping("info")
+    // 获取个人信息
+    public Result getUserInfo() {
         return null;
     }
 
-    @PutMapping("update")
-    public Result updateUser() {
+    @PutMapping("info")
+    // 更新个人信息
+    public Result updateUserInfo() {
         return null;
     }
 
     @GetMapping("batches")
-    public Result getMyBatches() {
-        return null;
-    }
-
-    @GetMapping("metadata")
-    public Result getMyMetadata() {
-        return null;
-    }
-
-    @PostMapping("newbatch")
-    public Result newBatch() {
+    // 获取我的填报
+    public Result getMyFilling() {
         return null;
     }
 }
