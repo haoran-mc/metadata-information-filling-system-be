@@ -6,4 +6,17 @@
     <select id="getUserByPhone" resultType="User" parameterType="String">
         select * from user where phone = #{phone}
     </select>
+
+    <!--查询用户资料sql-->
+    <select id="getByUsername" resultType="User">
+        select * from user where username = #{username}
+    </select>
+    <!--更新用户资料sql-->
+    <update id="updateInfoByUsername">
+        update user
+        set
+            nickname = #{nickname},
+            password = #{password}
+        where username = ${username}
+    </update>
 </mapper>
