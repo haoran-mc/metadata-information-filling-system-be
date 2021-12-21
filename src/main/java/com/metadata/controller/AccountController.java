@@ -28,7 +28,7 @@ public class AccountController {
 
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
-        User user = userService.getById(loginDto.getUsername());
+        User user = userService.getById(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
 
@@ -42,15 +42,15 @@ public class AccountController {
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         return Result.success(MapUtil.builder()
+                .put("phone", user.getPhone())
                 .put("username", user.getUsername())
-                .put("nickname", user.getNickname())
                 .map()
         );
     }
 
     @PostMapping("register")
     public Result register(@Validated @RequestBody RegisterDto registerDto, HttpServletResponse response) {
-        User user = userService.create(registerDto.getUsername(), SecureUtil.md5(registerDto.getPassword()));
+        User user = userService.create(registerDto.getPhone(), SecureUtil.md5(registerDto.getPassword()));
 
         // TODO 是否需要判断插入不成功
 
@@ -60,8 +60,8 @@ public class AccountController {
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         return Result.success(MapUtil.builder()
+                .put("phone", user.getPhone())
                 .put("username", user.getUsername())
-                .put("nickname", user.getNickname())
                 .map()
         );
     }

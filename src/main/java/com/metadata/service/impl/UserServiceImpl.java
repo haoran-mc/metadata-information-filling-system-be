@@ -14,14 +14,15 @@ public class UserServiceImpl implements UserService {
     UserMapper userMapper;
 
     @Override
-    public User getById(String username) {
+    public User getById(String Phone) {
         User user = new User();
         return user;
     }
 
     @Override
-    public User getByUsername(String username) {
-        return null;
+    public User getByPhone(String phone) {
+        User user = userMapper.getUserByPhone(phone);
+        return user;
     }
 
     @Override

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Textbook {
     int id;
     String name;
-    String username; // 填报人的用户名，也就是电话
+    String phone; // 填报人的电话
     String editor; // 主编
     String publishing_house; // 出版社
     Data publishing_time; // 出版时间

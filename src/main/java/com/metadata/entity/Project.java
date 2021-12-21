@@ -13,7 +13,7 @@ public class Project {
     int id;
     String name; // 项目名称
     String host; // 主持人
-    String username; // 填表人的用户名，也就是电话
+    String phone; // 填表人的电话
 
     String category_first_level;
     String category_second_level;
@@ -22,9 +22,9 @@ public class Project {
     String department; // 立项单位，计算机中心
     int money; // 经费
     String number; // 编号，XF89FF233
-    Date start_time;
-    Date end_time;
-    String attachment_path;
+    Date start_time; // 项目开始时间
+    Date end_time; // 项目截至时间
+    String attachment_path; // 附件地址
     int year;
     int batch;
 }
