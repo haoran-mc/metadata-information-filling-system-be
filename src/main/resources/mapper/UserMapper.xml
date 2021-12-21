@@ -3,20 +3,30 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metadata.mapper.UserMapper">
+    <!--通过用户手机号查询用户个人的资料sql-->
     <select id="getUserByPhone" resultType="User" parameterType="String">
         select * from user where phone = #{phone}
     </select>
 
-    <!--查询用户资料sql-->
-    <select id="getByUsername" resultType="User">
-        select * from user where username = #{username}
-    </select>
-    <!--更新用户资料sql-->
-    <update id="updateInfoByUsername">
+    <!--通过用户对象更新用户个人的资料sql-->
+    <update id="updateUserByPhone">
         update user
         set
-            nickname = #{nickname},
+            username = #{username},
             password = #{password}
-        where username = ${username}
+        where phone = #{phone}
     </update>
+
+    <!--获取用户所填写项目的详细信息sql-->
+    <select id="getUserBatchProject" resultType="Project">
+        select * from project
+        where phone = #{phone}
+    </select>
+
+    <!--获取用户所填写书籍的详细信息sql-->
+    <select id="getUserBatchTextbook" resultType="Textbook">
+        select * from textbook
+        where phone = #{phone}
+    </select>
+
 </mapper>
