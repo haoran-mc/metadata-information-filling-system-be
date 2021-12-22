@@ -9,22 +9,22 @@
     </select>
 
     <!--通过用户对象更新用户个人的资料sql-->
-    <update id="updateUserByPhone">
+    <update id="updateUser">
         update user
         set
-            username = #{username},
-            password = #{password}
-        where phone = #{phone}
+            username = #{user.username},
+            password = #{user.password}
+        where phone = #{user.phone}
     </update>
 
     <!--获取用户所填写项目的详细信息sql-->
-    <select id="getUserBatchProject" resultType="Project">
+    <select id="getUserProject" resultType="Project">
         select * from project
         where phone = #{phone}
     </select>
 
     <!--获取用户所填写书籍的详细信息sql-->
-    <select id="getUserBatchTextbook" resultType="Textbook">
+    <select id="getUserTextbook" resultType="Textbook">
         select * from textbook
         where phone = #{phone}
     </select>

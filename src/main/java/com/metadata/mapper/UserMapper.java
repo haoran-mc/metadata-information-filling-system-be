@@ -4,9 +4,7 @@ import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.entity.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
-
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface UserMapper {
@@ -19,23 +17,21 @@ public interface UserMapper {
 
     /**
      * 通过用户对象更新用户个人的资料mapper
-     * @param phone 手机号
-     * @param username 用户名
-     * @param password 密码
+     * @param user user对象
      */
-    void updateUserByPhone(String phone, String username, String password);
+    void updateUser(@Param("user") User user);
 
     /**
      * 获取用户所填写项目的详细信息mapper
      * @param phone 手机号
      * @return project对象
      */
-    Project getUserBatchProject(String phone);
+    Project getUserProject(String phone);
 
     /**
      * 获取用户所填写书籍的详细信息mapper
      * @param phone 手机号
      * @return textbook对象
      */
-    Textbook getUserBatchTextbook(String phone);
+    Textbook getUserTextbook(String phone);
 }

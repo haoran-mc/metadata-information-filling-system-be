@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("users")
@@ -28,7 +27,7 @@ public class UserController {
     public Result getUserInfo(@RequestParam(name = "userPhone") String userPhone) {
         //参数可写HttpServletRequest request
         //String userPhone = request.getParameter("userPhone");
-        User data = userService.getUserByPhoneS(userPhone);
+        User data = userService.getUserByPhone(userPhone);
         return Result.success(data);
     }
 
@@ -39,7 +38,7 @@ public class UserController {
      */
     @PutMapping("info")
     public Result updateUserInfo(@RequestBody User user) {
-        userService.updateUserByPhoneS(user);
+        userService.updateUser(user);
         return Result.success(null);
     }
 
@@ -52,7 +51,7 @@ public class UserController {
     @GetMapping("batches")
     public Result getMyFilling(@RequestParam(name = "userPhone") String userPhone,
                                @RequestParam(name = "category") int category) {
-        Object obj = userService.getUserBatchByCategory(userPhone, category);
+        Object obj = userService.getUserBatches(userPhone, category);
         return Result.success(obj);
     }
 }

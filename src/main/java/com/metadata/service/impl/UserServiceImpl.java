@@ -8,7 +8,6 @@ import com.metadata.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -32,17 +31,8 @@ public class UserServiceImpl implements UserService {
      * @return user对象
      */
     @Override
-    public User getUserByPhoneS(String phone) {
+    public User getUserByPhone(String phone) {
         User result = userMapper.getUserByPhone(phone);
-        /*用户不存在的异常
-        if (result == null) {
-            try {
-                throw new Exception("用户数据不存在");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-         */
         User user = new User();
         user.setPhone(result.getPhone());
         user.setUsername(result.getUsername());
@@ -53,21 +43,11 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 通过用户对象更新用户个人的资料impl
-     * @param user
+     * @param user user对象
      */
     @Override
-    public void updateUserByPhoneS(User user) {
-        /*用户不存在的异常
-        User result = userMapper.getUserByPhone(user.getPhone());
-        if (result == null) {
-            try {
-                throw new Exception("用户数据不存在");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-         */
-        userMapper.updateUserByPhone(user.getPhone(), user.getUsername(), user.getPassword());
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
     }
 
     /**
@@ -77,26 +57,17 @@ public class UserServiceImpl implements UserService {
      * @return 泛对象
      */
     @Override
-    public Object getUserBatchByCategory(String phone, int category) {
-        /*用户不存在的异常
-        User result = userMapper.getUserByPhone(phone);
-        if (result == null) {
-            try {
-                throw new Exception("用户数据不存在");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-         */
+    public Object getUserBatches(String phone, int category) {
+
         if(category == 1){
-            Project pj = userMapper.getUserBatchProject(phone);
+            Project pj = userMapper.getUserProject(phone);
             return pj;
         }else if(category == 2){
-            Textbook tb = userMapper.getUserBatchTextbook(phone);
+            Textbook tb = userMapper.getUserTextbook(phone);
             return tb;
         }else {
             try {
-                throw new Exception("类型参数出错");
+                throw new Exception("类型参数出错");  //这里异常需要新建一个异常类CategoryException处理
             } catch (Exception e) {
                 e.printStackTrace();
             }
