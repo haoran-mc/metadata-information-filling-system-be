@@ -4,7 +4,7 @@ import com.metadata.common.lang.Result;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("metadatas")
+@RequestMapping("textbooks")
 public class TextbookController {
     @GetMapping
     public Result selectProjectByProjectName() {

@@ -1,7 +1,6 @@
 package com.metadata.controller;
 
 import com.metadata.common.lang.Result;
-import com.metadata.entity.User;
 import com.metadata.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +16,7 @@ public class UserController {
 
     private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PutMapping("info")
+    @GetMapping("info")
     // 获取个人信息
     public Result getUserInfo() {
         return null;
