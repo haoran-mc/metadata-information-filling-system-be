@@ -28,6 +28,8 @@ public class AccountController {
 
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
+        System.out.println("----" + loginDto);
+
         User user = userService.getById(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
@@ -36,7 +38,7 @@ public class AccountController {
             return Result.fail("密码不正确");
         }
 
-        String jwt = jwtUtils.generateToken(user.getUsername());
+        String jwt = jwtUtils.generateToken(user.getPhone());
 
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-control-Expose-Headers", "Authorization");
