@@ -14,12 +14,23 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserMapper userMapper;
 
+    /**
+     * 通过用户id查询用户个人的资料impl
+     * @param Phone 手机号
+     * @return user对象
+     */
     @Override
     public User getById(String Phone) {
         User user = new User();
         return user;
     }
 
+    /**
+     * 用户注册impl
+     * @param username 用户名
+     * @param password 密码
+     * @return null
+     */
     @Override
     public User create(String username, String password) {
         return null;
