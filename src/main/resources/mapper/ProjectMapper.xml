@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metadata.mapper.ProjectMapper">
+    <!--获取指定名称项目sql-->
+    <select id="selectProject" resultType="Project">
+        select * from project
+        where year = #{year} and batch = #{batch} and name like concat('%',#{name},'%')
+    </select>
+
+    <!--删除指定id项目sql-->
+    <delete id="deleteProject">
+        delete from project
+        where id = #{project.id}
+    </delete>
+
+    <!--更新指定id项目sql-->
+    <update id="updateProject">
+        update project
+        set
+            name = #{project.name},
+            host = #{project.host},
+            phone = #{project.phone},
+            category_first_level = #{project.category_first_level},
+            category_second_level = #{project.category_second_level},
+            category_third_level = #{project.category_third_level},
+            department = #{project.department},
+            money = #{project.money},
+            start_time = #{project.start_time},
+            end_time = #{project.end_time},
+            number = #{project.number},
+            attachment_path = #{project.attachment_path},
+            year = #{project.year},
+            batch = #{project.batch}
+        where id = #{project.id}
+    </update>
+</mapper>

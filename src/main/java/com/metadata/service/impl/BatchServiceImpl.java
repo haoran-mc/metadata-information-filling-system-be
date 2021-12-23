@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Service("batchService")
-public class BatchServiceImpl implements BatchService{
+public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
 
