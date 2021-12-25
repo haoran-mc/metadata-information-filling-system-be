@@ -7,4 +7,28 @@
     <select id="getAllBatches" resultType="Batch">
         select * from batch
     </select>
+
+    <!--插入新的batch记录sql-->
+    <insert id="createBatch">
+        insert into batch (year, batch_idx, batch_name, end_time)
+        values (#{batch.year}, #{batch.batch_idx}, #{batch.batch_name}, #{batch.end_time})
+    </insert>
+
+    <!--插入新的sp记录sql-->
+    <insert id="createSp">
+        insert sp (year, batch, project_id, textbook_id)
+        values (#{sp.year}, #{sp.batch}, #{sp.project_id}, #{sp.textbook_id})
+    </insert>
+
+    <!--获取project表最新记录的id sql-->
+    <!--select max(id) from project-->
+    <select id="getLatestProjectId" resultType="int">
+        select max(id) from project
+    </select>
+
+    <!--获取Textbook表最新记录的id sql-->
+    <!--select max(id) from textbook-->
+    <select id="getLatestTextbookId" resultType="int">
+        select max(id) from textbook
+    </select>
 </mapper>
