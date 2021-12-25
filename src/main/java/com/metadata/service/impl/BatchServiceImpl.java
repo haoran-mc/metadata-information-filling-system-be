@@ -22,8 +22,8 @@ public class BatchServiceImpl implements BatchService {
      * @return project对象集
      */
     @Override
-    public List<Project> getBatchProject(int year, int batch, int category) {
-        if(category == 1) {
+    public List<Project> getBatchProject(int year, int batch, String category) {
+        if(category == "project") {
             return batchMapper.getBatchProject(year, batch);
         }
         return null;
@@ -37,8 +37,8 @@ public class BatchServiceImpl implements BatchService {
      * @return textbook对象集
      */
     @Override
-    public List<Textbook> getBatchTextbook(int year, int batch, int category) {
-        if(category == 2) {
+    public List<Textbook> getBatchTextbook(int year, int batch, String category) {
+        if(category == "textbook") {
             return batchMapper.getBatchTextbook(year, batch);
         }
         return null;

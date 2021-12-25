@@ -50,7 +50,7 @@ public class UserController {
      */
     @GetMapping("batches")
     public Result getMyFilling(@RequestParam(name = "userPhone") String userPhone,
-                               @RequestParam(name = "category") int category) {
+                               @RequestParam(name = "category") String category) {
         Object obj = userService.getUserBatches(userPhone, category);
         return Result.success(obj);
     }

@@ -38,5 +38,5 @@ public interface UserService {
      * @param category 类型
      * @return 泛对象
      */
-    Object getUserBatches(String phone, int category);
+    Object getUserBatches(String phone, String category);
 }

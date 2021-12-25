@@ -26,7 +26,7 @@ public class BatchController {
      */
     @GetMapping
     public Result getBatch(@RequestParam(name = "year") int year, @RequestParam(name = "batchid") int batch,
-                           @RequestParam(name = "category") int category) {
+                           @RequestParam(name = "category") String category) {
         List<Project> pj = batchService.getBatchProject(year, batch, category);
         List<Textbook> tb = batchService.getBatchTextbook(year, batch, category);
         if(pj != null){

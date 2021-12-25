@@ -14,7 +14,7 @@ public interface BatchService {
      * @param category 种类
      * @return project对象集
      */
-    List<Project> getBatchProject(int year, int batch, int category);
+    List<Project> getBatchProject(int year, int batch, String category);
 
     /**
      * 获取指定批次的书籍service
@@ -23,7 +23,7 @@ public interface BatchService {
      * @param category 种类
      * @return textbook对象集
      */
-    List<Textbook> getBatchTextbook(int year, int batch, int category);
+    List<Textbook> getBatchTextbook(int year, int batch, String category);
 
     /**
      * 插入新的填报service
