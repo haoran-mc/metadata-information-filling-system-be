@@ -62,27 +62,24 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 获取用户所填写项目或书籍的详细信息impl
+     * 获取用户所填写项目的详细信息impl
      * @param phone 手机号
-     * @param category 类型
-     * @return 泛对象
+     * @return project对象
      */
     @Override
-    public Object getUserBatches(String phone, String category) {
-
-        if(category == "project"){
-            Project pj = userMapper.getUserProject(phone);
-            return pj;
-        }else if(category == "textbook"){
-            Textbook tb = userMapper.getUserTextbook(phone);
-            return tb;
-        }else {
-            try {
-                throw new Exception("类型参数出错");  //这里异常需要新建一个异常类CategoryException处理
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+    public Project getUserProject(String phone) {
+        return userMapper.getUserProject(phone);
     }
+
+    /**
+     * 获取用户所填写书籍的详细信息impl
+     * @param phone 手机号
+     * @return textbook对象
+     */
+    @Override
+    public Textbook getUserTextbook(String phone) {
+        return userMapper.getUserTextbook(phone);
+    }
+
+
 }

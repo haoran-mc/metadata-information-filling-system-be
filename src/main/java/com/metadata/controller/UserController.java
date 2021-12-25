@@ -1,6 +1,8 @@
 package com.metadata.controller;
 
 import com.metadata.common.lang.Result;
+import com.metadata.entity.Project;
+import com.metadata.entity.Textbook;
 import com.metadata.entity.User;
 import com.metadata.service.UserService;
 import org.slf4j.Logger;
@@ -42,16 +44,23 @@ public class UserController {
         return Result.success(null);
     }
 
+
     /**
-     * 获取用户所填写项目或书籍的详细信息
+     * 获取用户所填写书籍的详细信息
      * @param userPhone 手机号
-     * @param category
-     * @return 泛对象
+     * @param category 种类
+     * @return project/textbook对象
      */
     @GetMapping("batches")
     public Result getMyFilling(@RequestParam(name = "userPhone") String userPhone,
                                @RequestParam(name = "category") String category) {
-        Object obj = userService.getUserBatches(userPhone, category);
-        return Result.success(obj);
+        if(category == "project"){
+            Project project = userService.getUserProject(userPhone);
+            return Result.success(project);
+        }else if (category == "textbook"){
+            Textbook textbook = userService.getUserTextbook(userPhone);
+            return Result.success(textbook);
+        }
+        return Result.fail("category不合法！");
     }
 }

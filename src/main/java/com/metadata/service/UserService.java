@@ -1,5 +1,7 @@
 package com.metadata.service;
 
+import com.metadata.entity.Project;
+import com.metadata.entity.Textbook;
 import com.metadata.entity.User;
 
 
@@ -33,10 +35,17 @@ public interface UserService {
     void updateUser(User user);
 
     /**
-     * 获取用户所填写项目或书籍的详细信息service
+     * 获取用户所填写项目的详细信息service
      * @param phone 手机号
-     * @param category 类型
-     * @return 泛对象
+     * @return project对象
      */
-    Object getUserBatches(String phone, String category);
+    Project getUserProject(String phone);
+
+    /**
+     * 获取用户所填写书籍的详细信息service
+     * @param phone 手机号
+     * @return textbook对象
+     */
+    Textbook getUserTextbook(String phone);
+
 }
