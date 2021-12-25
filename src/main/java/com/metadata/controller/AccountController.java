@@ -34,7 +34,7 @@ public class AccountController {
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
         System.out.println("----" + loginDto);
 
-        User user = userService.getByPhone(loginDto.getPhone());
+        User user = userService.getUserByPhone(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
 

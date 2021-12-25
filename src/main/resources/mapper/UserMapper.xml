@@ -7,7 +7,30 @@
         select * from user where id = #{id}
     </select>
 
+    <!--通过用户手机号查询用户个人的资料sql-->
     <select id="getUserByPhone" resultType="User" parameterType="String">
         select * from user where phone = #{phone}
     </select>
+
+    <!--通过用户对象更新用户个人的资料sql-->
+    <update id="updateUser">
+        update user
+        set
+            username = #{user.username},
+            password = #{user.password}
+        where phone = #{user.phone}
+    </update>
+
+    <!--获取用户所填写项目的详细信息sql-->
+    <select id="getUserProject" resultType="Project">
+        select * from project
+        where phone = #{phone}
+    </select>
+
+    <!--获取用户所填写书籍的详细信息sql-->
+    <select id="getUserTextbook" resultType="Textbook">
+        select * from textbook
+        where phone = #{phone}
+    </select>
+
 </mapper>
