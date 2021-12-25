@@ -44,7 +44,8 @@ public class JwtFilter extends AuthenticatingFilter {
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+    protected boolean onAccessDenied(ServletRequest servletRequest,
+                                     ServletResponse servletResponse) throws Exception {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         // 获取 jwt
         String jwt = request.getHeader("Authorization");
@@ -68,7 +69,10 @@ public class JwtFilter extends AuthenticatingFilter {
 
     // 重写 onLoginFailure 方法，因为返回数据自定义为 Result 了
     @Override
-    protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
+    protected boolean onLoginFailure(AuthenticationToken token,
+                                     AuthenticationException e,
+                                     ServletRequest request,
+                                     ServletResponse response) {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
         // 获取错误的原因
