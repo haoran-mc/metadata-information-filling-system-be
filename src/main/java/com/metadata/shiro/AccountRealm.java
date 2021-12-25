@@ -44,11 +44,6 @@ public class AccountRealm extends AuthorizingRealm {
             throw new UnknownAccountException("账户不存在");
         }
 
-        // 用户被锁，这里没有这个设置
-        if (user.getIdentify() == -1) {
-            throw new LockedAccountException("账户已被锁定");
-        }
-
         AccountProfile profile = new AccountProfile();
         BeanUtil.copyProperties(user, profile);
 
