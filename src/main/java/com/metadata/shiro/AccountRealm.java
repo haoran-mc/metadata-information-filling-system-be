@@ -4,10 +4,13 @@ import cn.hutool.core.bean.BeanUtil;
 import com.metadata.entity.User;
 import com.metadata.service.UserService;
 import com.metadata.util.JwtUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,5 +54,17 @@ public class AccountRealm extends AuthorizingRealm {
 
         // 权限、凭证、域名
         return new SimpleAuthenticationInfo(profile, jwtToken.getCredentials(), getName());
+    }
+
+    // 授权，获取一个用户的权限，然后封装成一个 info 返回给 shiro
+    @Override
+    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+
+        Subject subject = SecurityUtils.getSubject();
+        User currentUser = (User) subject.getPrincipal();
+        info.addStringPermission(currentUser.getRole());
+
+        return info;
     }
 }
