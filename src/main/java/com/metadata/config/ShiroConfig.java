@@ -102,6 +102,12 @@ public class ShiroConfig {
         Map<String, String> filterMap = shiroFilterChainDefinition.getFilterChainMap();
 
         shiroFilter.setFilterChainDefinitionMap(filterMap);
+
+        // 设置登录请求
+        // shiroFilter.setLoginUrl("/toLogin");
+        // 未授权的页面，所以我们还需要一个未授权的页面
+        shiroFilter.setUnauthorizedUrl("/noauth");
+
         return shiroFilter;
     }
 }
