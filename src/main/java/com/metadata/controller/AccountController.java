@@ -34,7 +34,7 @@ public class AccountController {
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
         System.out.println("----" + loginDto);
 
-        User user = userService.getById(loginDto.getPhone());
+        User user = userService.getByPhone(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
 
@@ -49,6 +49,7 @@ public class AccountController {
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         return Result.success(MapUtil.builder()
+                .put("id", user.getId())
                 .put("phone", user.getPhone())
                 .put("username", user.getUsername())
                 .map()
@@ -61,7 +62,7 @@ public class AccountController {
 
         // TODO 是否需要判断插入不成功
 
-        String jwt = jwtUtils.generateToken(user.getUsername());
+        String jwt = jwtUtils.generateToken(String.valueOf(user.getId()));
 
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-control-Expose-Headers", "Authorization");

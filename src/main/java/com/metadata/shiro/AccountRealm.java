@@ -40,7 +40,7 @@ public class AccountRealm extends AuthorizingRealm {
         String userId = jwtUtils.getClaimByToken((String) jwtToken.getPrincipal()).getSubject();
 
         // 查出用户
-        User user = userService.getById(userId);   // 这里其实是通过用户名来获取用户
+        User user = userService.getById(Integer.parseInt(userId));   // 这里其实是通过用户手机来获取用户
 
         // 用户不存在
         if (user == null) {

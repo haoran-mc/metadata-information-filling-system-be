@@ -8,5 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+    User getUserById(int id);
+
     User getUserByPhone(String phone);
 }
