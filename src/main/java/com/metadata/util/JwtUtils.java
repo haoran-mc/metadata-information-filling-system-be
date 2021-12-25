@@ -44,8 +44,8 @@ public class JwtUtils {
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
-        }catch (Exception e){
-            // log.debug("validate is token error ", e);
+        } catch (Exception e){
+             log.debug("validate is token error ", e);
             return null;
         }
     }
