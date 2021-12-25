@@ -14,7 +14,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger log = LoggerFactory.getLogger(UserController.class);
 
     @GetMapping("info")
     // 获取个人信息

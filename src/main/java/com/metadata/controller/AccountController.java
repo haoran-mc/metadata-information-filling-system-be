@@ -11,6 +11,8 @@ import com.metadata.service.UserService;
 import com.metadata.util.JwtUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,8 @@ public class AccountController {
     @Autowired
     JwtUtils jwtUtils;
 
+    private final static Logger log = LoggerFactory.getLogger(AccountController.class);
+
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
         System.out.println("----" + loginDto);
@@ -35,6 +39,7 @@ public class AccountController {
         Assert.notNull(user, "用户不存在");
 
         if (user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
+            log.error("密码不正确");
             return Result.fail("密码不正确");
         }
 
