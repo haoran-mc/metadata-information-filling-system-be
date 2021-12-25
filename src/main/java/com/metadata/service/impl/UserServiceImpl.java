@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 通过用户id查询用户个人的资料impl
-     * @param Phone 手机号
+     * @param id id
      * @return user对象
      */
     @Override
