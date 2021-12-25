@@ -15,7 +15,7 @@ public interface TextbookMapper {
      * @param name 名称
      * @return textbook对象集
      */
-    List<Textbook> selectTextbook(int year, int batch, String name);
+    List<Textbook> selectTextbook(@Param("year") int year, @Param("batch") int batch, @Param("name") String name);
 
     /**
      * 删除指定id书籍mapper
