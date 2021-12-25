@@ -6,8 +6,11 @@ import java.io.Serializable;
 
 @Data
 public class AccountProfile implements Serializable {
+    private int id;
+
+    private String phone;
+
     private String username;
 
-    private String nickname;
-    // private int identify;
+    private String role;
 }

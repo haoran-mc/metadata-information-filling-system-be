@@ -6,10 +6,10 @@ import com.metadata.entity.User;
 public interface UserService {
     /**
      * 通过用户id查询用户个人的资料service
-     * @param phone 手机号
+     * @param id 用户 id
      * @return user对象
      */
-    User getById(String phone);
+    User getById(int id);
 
     /**
      * 用户注册service
@@ -39,6 +39,4 @@ public interface UserService {
      * @return 泛对象
      */
     Object getUserBatches(String phone, int category);
-
-
 }

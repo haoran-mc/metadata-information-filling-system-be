@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    private final static Logger logger = LoggerFactory.getLogger(UserController.class);
+    private final static Logger log = LoggerFactory.getLogger(UserController.class);
 
     /**
      * 通过用户手机号查询用户个人的资料

@@ -20,43 +20,62 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/**
+ * 继承 shiro 内置的过滤器 AuthenticatingFilter
+ * jwtFilter 根据是否有 jwt 判断是否经过 shiro 处理
+ */
 @Component
 public class JwtFilter extends AuthenticatingFilter {
     @Autowired
     JwtUtils jwtUtils;
 
+    // 获取 jwt 后需要拿给 shiro 处理，shiro 处理的是 token 的形式，所以我们需要将 jwt 包装成 token
     @Override
     protected AuthenticationToken createToken(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+        // 我们的 jwt 是放在头部的，强转之后拿到 jwt
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String jwt = request.getHeader("Authorization");
+
+        // jwt 不能为空
         if (StringUtils.isEmpty(jwt))
             return null;
+        // 不为空就生成一个 jwtToken 对象
         return new JwtToken(jwt);
     }
 
     @Override
-    protected boolean onAccessDenied(ServletRequest servletRequest, ServletResponse servletResponse) throws Exception {
+    protected boolean onAccessDenied(ServletRequest servletRequest,
+                                     ServletResponse servletResponse) throws Exception {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+        // 获取 jwt
         String jwt = request.getHeader("Authorization");
+
         if (StringUtils.isEmpty(jwt)) {
             return true;   // 如果没有 jwt，就不需要 shiro 注解处理，直接到 controller
         } else {
-            // 校验 jwt，判断 jwt 是否过期、错误等
+            // 拿到 jwt 中存储的信息，校验 jwt，判断 jwt 是否过期、错误等
             Claims claim = jwtUtils.getClaimByToken(jwt);
             if (claim == null || jwtUtils.isTokenExpired(claim.getExpiration())) {
                 throw new ExpiredCredentialsException("token 失效，请重新登录");
             }
 
             // 执行登录
+            // AuthenticatingFilter.executeLogin
+            // -> subject.login(token)
+            // -> AccountRealm.AuthenticationInfo
             return executeLogin(servletRequest, servletResponse);
         }
     }
 
     // 重写 onLoginFailure 方法，因为返回数据自定义为 Result 了
     @Override
-    protected boolean onLoginFailure(AuthenticationToken token, AuthenticationException e, ServletRequest request, ServletResponse response) {
+    protected boolean onLoginFailure(AuthenticationToken token,
+                                     AuthenticationException e,
+                                     ServletRequest request,
+                                     ServletResponse response) {
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
+        // 获取错误的原因
         Throwable throwable = e.getCause() == null ? e : e.getCause();
 
         Result result = Result.fail(throwable.getMessage());

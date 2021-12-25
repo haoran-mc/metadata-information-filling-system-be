@@ -18,9 +18,9 @@ import java.util.Date;
 @ConfigurationProperties(prefix = "jwt")
 public class JwtUtils {
 
-    private String secret;
-    private long expire;
-    private String header;
+    private String secret;   // 密钥
+    private long expire;   // 过期时间
+    private String header;   // 头部
 
     // 生成jwt token
     public String generateToken(String userId) {
@@ -37,14 +37,15 @@ public class JwtUtils {
                 .compact();
     }
 
+    // 解析 token 获得 claim 中的信息
     public Claims getClaimByToken(String token) {
         try {
             return Jwts.parser()
                     .setSigningKey(secret)
                     .parseClaimsJws(token)
                     .getBody();
-        }catch (Exception e){
-            // log.debug("validate is token error ", e);
+        } catch (Exception e){
+             log.debug("validate is token error ", e);
             return null;
         }
     }

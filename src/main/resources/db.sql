@@ -58,7 +58,7 @@ create table textbook
     username         varchar(30)  null comment '填表人的用户名，也就是电话号码',
     editor           varchar(30)  null comment '主编',
     publishing_house varchar(150) null comment '出版社',
-    poblishing_time  date         null comment '出版时间',
+    publishing_time  date         null comment '出版时间',
     selection_time   date         null comment '入选时间',
     attachment_path  varchar(30)  null comment '附件路径',
     year             int          null comment '教材所属年份',
@@ -69,11 +69,12 @@ create table textbook
 
 create table user
 (
-    phone    varchar(30) not null comment '用户电话作为主键'
+    id       int auto_increment comment '主键'
         primary key,
-    password varchar(30) not null,
-    username varchar(30) null,
-    identify int         null comment '用户权限，1 表示超级管理员，2 表示管理员，3 表示用户',
-    constraint user_phone_uindex
-        unique (phone)
+    phone    varchar(30)                not null,
+    username varchar(30)                null,
+    password varchar(30)                null,
+    role     varchar(30) default 'user' null,
+    constraint user_id_uindex
+        unique (id)
 );

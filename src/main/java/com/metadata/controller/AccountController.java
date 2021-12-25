@@ -11,6 +11,8 @@ import com.metadata.service.UserService;
 import com.metadata.util.JwtUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -26,24 +28,32 @@ public class AccountController {
     @Autowired
     JwtUtils jwtUtils;
 
+    private final static Logger log = LoggerFactory.getLogger(AccountController.class);
+
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
-        User user = userService.getById(loginDto.getPhone());
+        System.out.println("----" + loginDto);
+
+        User user = userService.getUserByPhone(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
 
         if (user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
+            log.error("密码不正确");
             return Result.fail("密码不正确");
         }
 
-        String jwt = jwtUtils.generateToken(user.getUsername());
+        String jwt = jwtUtils.generateToken(user.getPhone());
 
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
+        // 这里不能返回 密码
         return Result.success(MapUtil.builder()
+                .put("id", user.getId())
                 .put("phone", user.getPhone())
                 .put("username", user.getUsername())
+                .put("role", user.getRole())
                 .map()
         );
     }
@@ -54,7 +64,7 @@ public class AccountController {
 
         // TODO 是否需要判断插入不成功
 
-        String jwt = jwtUtils.generateToken(user.getUsername());
+        String jwt = jwtUtils.generateToken(String.valueOf(user.getId()));
 
         response.setHeader("Authorization", jwt);
         response.setHeader("Access-control-Expose-Headers", "Authorization");

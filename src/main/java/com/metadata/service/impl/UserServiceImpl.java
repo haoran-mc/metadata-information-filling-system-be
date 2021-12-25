@@ -20,8 +20,8 @@ public class UserServiceImpl implements UserService {
      * @return user对象
      */
     @Override
-    public User getById(String Phone) {
-        User user = new User();
+    public User getById(int id) {
+        User user = getById(id);
         return user;
     }
 

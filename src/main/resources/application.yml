@@ -13,7 +13,8 @@ mybatis:
 server:
   port: 8081
 jwt:
-  secret: f4e2e52034348f86b67cde581c0f9eb5
+  # secret: f4e2e52034348f86b67cde581c0f9eb5
+  secret: FiveForOne
   # 5 * 60 * 60 = 五小时
   expire: 18000
   header: Authorization
