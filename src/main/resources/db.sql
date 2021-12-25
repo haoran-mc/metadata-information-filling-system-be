@@ -58,7 +58,7 @@ create table textbook
     username         varchar(30)  null comment '填表人的用户名，也就是电话号码',
     editor           varchar(30)  null comment '主编',
     publishing_house varchar(150) null comment '出版社',
-    poblishing_time  date         null comment '出版时间',
+    publishing_time  date         null comment '出版时间',
     selection_time   date         null comment '入选时间',
     attachment_path  varchar(30)  null comment '附件路径',
     year             int          null comment '教材所属年份',
