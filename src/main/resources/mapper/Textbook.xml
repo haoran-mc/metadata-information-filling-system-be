@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.metadata.mapper.TextbookMapper">
+    <!--获取指定名称书籍sql-->
+    <select id="selectTextbook" resultType="Textbook">
+        select * from textbook
+        where year = #{year} and batch = #{batch} and name like concat('%',#{name},'%')
+    </select>
+
+    <!--删除指定id书籍sql-->
+    <delete id="deleteTextbook">
+        delete from textbook
+        where id = #{textbook.id}
+    </delete>
+
+    <!--更新指定id书籍sql-->
+    <update id="updateTextbook">
+        update textbook
+        set
+            name = #{textbook.name},
+            phone = #{textbook.phone},
+            editor = #{textbook.editor},
+            publishing_house = #{textbook.publishing_house},
+            publishing_time = #{textbook.publishing_time},
+            selection_time = #{textbook.selection_time},
+            attachment_path = #{textbook.attachment_path},
+            year = #{textbook.year},
+            batch = #{textbook.batch}
+        where id = #{textbook.id}
+    </update>
+</mapper>
