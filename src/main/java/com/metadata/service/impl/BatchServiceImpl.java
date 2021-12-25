@@ -1,5 +1,6 @@
 package com.metadata.service.impl;
 
+import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.mapper.BatchMapper;
@@ -15,6 +16,11 @@ public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
 
+    @Override
+    public List<Batch> getAllBatches() {
+        return batchMapper.getAllBatches();
+    }
+
     /**
      * 获取指定批次的项目impl
      * @param year 年份
@@ -25,8 +31,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public List<Project> getBatchProject(int year, int batch, int category) {
         if(category == 1) {
-            List<Project> pjList = batchMapper.getBatchProject(year, batch);
-            return pjList;
+            return batchMapper.getBatchProject(year, batch);
         }
         return null;
     }
@@ -41,8 +46,7 @@ public class BatchServiceImpl implements BatchService {
     @Override
     public List<Textbook> getBatchTextbook(int year, int batch, int category) {
         if(category == 2) {
-            List<Textbook> tbList = batchMapper.getBatchTextbook(year, batch);
-            return tbList;
+            return batchMapper.getBatchTextbook(year, batch);
         }
         return null;
     }

@@ -1,11 +1,15 @@
 package com.metadata.service;
 
+import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 
 import java.util.List;
 
 public interface BatchService {
+
+    List<Batch> getAllBatches();
+
     /**
      * 获取指定批次的项目service
      * @param year 年份
