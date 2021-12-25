@@ -12,5 +12,5 @@ public class User {
     String phone;
     String password;
     String username;
-    int identify;
+    String Role;   // super_admin, admin, user
 }
