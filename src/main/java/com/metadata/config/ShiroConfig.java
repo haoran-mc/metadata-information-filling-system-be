@@ -27,6 +27,7 @@ public class ShiroConfig {
     @Autowired
     JwtFilter jwtFilter;
 
+    // 使用 redis
     @Bean
     public SessionManager sessionManager(RedisSessionDAO redisSessionDAO) {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
@@ -39,13 +40,14 @@ public class ShiroConfig {
         return sessionManager;
     }
 
+    // 重写了 realm，所以需要重写 SessionSecurityManager 和 SessionManager
     @Bean
     public SessionsSecurityManager securityManager(AccountRealm accountRealm,
                                                    SessionManager sessionManager,
                                                    RedisCacheManager redisCacheManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager(accountRealm);
 
-        //inject sessionManager
+        // inject sessionManager
         securityManager.setSessionManager(sessionManager);
 
         // inject redisCacheManager
@@ -56,29 +58,49 @@ public class ShiroConfig {
         return securityManager;
     }
 
-    // 定义哪些链接经过什么过滤器
+    /**
+     * shiro 过滤器链，定义哪些链接经过哪些过滤器
+     * 比如 /batches 需要经过 authc 的过滤器
+     * 但是我们这里让所有的链接都经过 jwt 过滤器，jwt 过滤器在下面被指定是 jwtFilter
+     * jwtFilter 时自定义的过滤器
+     */
     @Bean
     public ShiroFilterChainDefinition shiroFilterChainDefinition() {
         DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
 
+        // 使用 jwt 拦截，jwt 不是 shiro 默认的，需要自己配置
         Map<String, String> filterMap = new LinkedHashMap<>();
 
+        // 所有的链接都需要经过 jwt 过滤器
         filterMap.put("/**", "jwt");
         chainDefinition.addPathDefinitions(filterMap);
         return chainDefinition;
     }
 
-    @Bean("shiroFilterFactoryBean")
+    // 拦截器
+    @Bean
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager,
                                                          ShiroFilterChainDefinition shiroFilterChainDefinition) {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
+        // 设置安全管理器
         shiroFilter.setSecurityManager(securityManager);
 
         Map<String, Filter> filters = new HashMap<>();
+        /** shiro 的内置过滤器：
+         * anon: 无需认证就可访问
+         * authc: 必须认证才能访问
+         * user: 必须拥有记住我才能用
+         * perms: 必须拥有对某个资源的权限才能访问
+         * role: 拥有某个角色权限才能访问
+         *
+         * 我们没有使用 shiro 内置的过滤器，自己配置一个 jwtFilter
+         */
         filters.put("jwt", jwtFilter);
         shiroFilter.setFilters(filters);
 
+
         Map<String, String> filterMap = shiroFilterChainDefinition.getFilterChainMap();
+
         shiroFilter.setFilterChainDefinitionMap(filterMap);
         return shiroFilter;
     }

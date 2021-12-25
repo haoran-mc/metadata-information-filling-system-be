@@ -25,13 +25,7 @@ public class AccountRealm extends AuthorizingRealm {
         return token instanceof JwtToken;
     }
 
-    // 获取一个用户的权限，然后封装成一个 info 返回给 shiro
-    @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        return null;
-    }
-
-    // 获取 token 之后进行密码校验等等逻辑，校验成功后返回基本信息
+    // 认证，获取 token 之后进行密码校验等等逻辑，校验成功后返回基本信息
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         JwtToken jwtToken = (JwtToken) token;   // 已经获得了 jwt
