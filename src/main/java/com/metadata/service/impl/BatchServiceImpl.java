@@ -1,6 +1,5 @@
 package com.metadata.service.impl;
 
-import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.mapper.BatchMapper;
@@ -15,12 +14,6 @@ import java.util.List;
 public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
-
-    @Override
-    public List<Batch> getAllBatches() {
-        return batchMapper.getAllBatches();
-    }
-
     /**
      * 获取指定批次的项目impl
      * @param year 年份

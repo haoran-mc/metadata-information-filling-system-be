@@ -1,6 +1,6 @@
 package com.metadata.mapper;
 
-import com.metadata.entity.Batch;
+
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import org.apache.ibatis.annotations.Mapper;
@@ -10,8 +10,6 @@ import java.util.List;
 
 @Mapper
 public interface BatchMapper {
-
-    List<Batch> getAllBatches();
 
     /**
      * 获取指定批次的项目mapper
