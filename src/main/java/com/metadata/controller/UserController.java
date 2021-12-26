@@ -52,9 +52,9 @@ public class UserController {
      * @return 泛对象
      */
     @GetMapping("batches")
-    public Result getMyFilling(@RequestParam(name = "userPhone") String userPhone,
-                               @RequestParam(name = "category") int category) {
-        Object obj = userService.getUserBatches(userPhone, category);
-        return Result.success(obj);
+    @RequiresAuthentication
+    public Result getMyFillings(@RequestParam(name = "id") int id) {
+        UserFillingDto userFillingDto = userService.getUserAllFillings(id);
+        return Result.success(userFillingDto);
     }
 }
