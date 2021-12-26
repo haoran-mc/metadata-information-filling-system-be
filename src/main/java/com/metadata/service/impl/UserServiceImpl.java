@@ -16,7 +16,8 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 通过用户id查询用户个人的资料impl
-     * @param Phone 手机号
+     *
+     * @param id 用户 id
      * @return user对象
      */
     @Override
@@ -29,7 +30,7 @@ public class UserServiceImpl implements UserService {
      * 用户注册impl
      * @param username 用户名
      * @param password 密码
-     * @return null
+     * @return 返回创建的用户
      */
     @Override
     public User create(String username, String password) {
@@ -54,6 +55,7 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 通过用户对象更新用户个人的资料impl
+     *
      * @param user user对象
      */
     @Override
@@ -63,8 +65,8 @@ public class UserServiceImpl implements UserService {
 
     /**
      * 获取用户所填写项目或书籍的详细信息impl
-     * @param phone 手机号
-     * @param category 类型
+     *
+     * @param id 用户 id
      * @return 泛对象
      */
     @Override

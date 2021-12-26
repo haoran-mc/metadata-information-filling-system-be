@@ -19,8 +19,9 @@ public class UserController {
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
 
     /**
-     * 通过用户手机号查询用户个人的资料
-     * @param userPhone 手机号
+     * 通过用户 id 查询用户个人的资料
+     *
+     * @param id 用户 id
      * @return user对象
      */
     @GetMapping("info")
@@ -33,6 +34,7 @@ public class UserController {
 
     /**
      * 通过用户对象更新用户个人的资料
+     *
      * @param user user对象
      * @return null
      */
@@ -43,9 +45,9 @@ public class UserController {
     }
 
     /**
-     * 获取用户所填写项目或书籍的详细信息
-     * @param userPhone 手机号
-     * @param category
+     * 获取用户所填写项目和教材
+     *
+     * @param id 用户 id
      * @return 泛对象
      */
     @GetMapping("batches")

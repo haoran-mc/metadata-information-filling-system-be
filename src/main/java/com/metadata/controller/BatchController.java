@@ -19,9 +19,12 @@ public class BatchController {
 
     /**
      * 获取指定批次的填报
-     * @param year 年份
-     * @param batch 批次
-     * @param category 种类
+     *
+     * @param year      年份
+     * @param batch_idx 批次
+     * @param category  类别 "project" or "textbook"
+     * @param page_num  页码
+     * @param page_size 分页尺寸
      * @return project/textbook对象集
      */
     @GetMapping
@@ -38,8 +41,9 @@ public class BatchController {
     }
 
     /**
-     * 插入新的填报
-     * @param jsonObject json数据
+     * 用户填报数据
+     *
+     * @param userFillingDto 用户需要填写项目和教材
      * @return null
      */
     @PostMapping

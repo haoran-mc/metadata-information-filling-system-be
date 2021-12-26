@@ -16,6 +16,10 @@ public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
 
+    /**
+     * 获取所有批次
+     * @return 所有批次列表
+     */
     @Override
     public List<Batch> getAllBatches() {
         return batchMapper.getAllBatches();
@@ -23,9 +27,11 @@ public class BatchServiceImpl implements BatchService {
 
     /**
      * 获取指定批次的项目impl
-     * @param year 年份
-     * @param batch 批次
-     * @param category 种类
+     *
+     * @param year      年份
+     * @param batch     批次
+     * @param page_num  页码
+     * @param page_size 分页尺寸
      * @return project对象集
      */
     @Override
@@ -38,9 +44,11 @@ public class BatchServiceImpl implements BatchService {
 
     /**
      * 获取指定批次的书籍impl
-     * @param year 年份
-     * @param batch 批次
-     * @param category 种类
+     *
+     * @param year      年份
+     * @param batch     批次
+     * @param page_num  页码
+     * @param page_size 分页尺寸
      * @return textbook对象集
      */
     @Override
@@ -53,7 +61,8 @@ public class BatchServiceImpl implements BatchService {
 
     /**
      * 插入新的填报impl
-     * @param project project对象
+     *
+     * @param project  project对象
      * @param textbook textbook对象
      */
     @Override

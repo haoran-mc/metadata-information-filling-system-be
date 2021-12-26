@@ -11,6 +11,10 @@ import java.util.List;
 @Mapper
 public interface BatchMapper {
 
+    /**
+     * 获取所有批次
+     * @return 所有批次的列表
+     */
     List<Batch> getAllBatches();
 
     /**

@@ -17,7 +17,7 @@ public class ProjectController {
     /**
      * 获取指定名称项目
      * @param year 年份
-     * @param batch 批次
+     * @param batch_idx 批次
      * @param name 名称
      * @return project对象集
      */
@@ -30,7 +30,7 @@ public class ProjectController {
 
     /**
      * 删除指定id项目
-     * @param project project对象
+     * @param id 项目 id
      * @return null
      */
     @DeleteMapping

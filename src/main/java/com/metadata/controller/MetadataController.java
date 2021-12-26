@@ -22,6 +22,10 @@ public class MetadataController {
         return null;
     }
 
+    /**
+     * 获取所有批次
+     * @return 所有批次列表
+     */
     @GetMapping
     public Result getAllBatches() {
         List<Batch> data = batchService.getAllBatches();

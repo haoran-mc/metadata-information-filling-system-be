@@ -16,7 +16,7 @@ public class ProjectServiceImpl implements ProjectService {
     /**
      * 获取指定名称项目impl
      * @param year 年份
-     * @param batch 批次
+     * @param batch_idx 批次
      * @param name 名称
      * @return project对象集
      */
@@ -28,7 +28,7 @@ public class ProjectServiceImpl implements ProjectService {
 
     /**
      * 删除指定id项目impl
-     * @param project project对象
+     * @param id 项目 id
      */
     @Override
     public void deleteProject(Project project) {
