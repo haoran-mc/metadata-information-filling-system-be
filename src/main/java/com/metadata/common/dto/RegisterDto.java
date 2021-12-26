@@ -9,6 +9,9 @@ public class RegisterDto {
     @NotBlank(message = "电话不能为空")
     private String phone;
 
+    @NotBlank(message = "姓名不能为空")
+    private String username;
+
     @NotBlank(message = "密码不能为空")
     private String password;
 }
