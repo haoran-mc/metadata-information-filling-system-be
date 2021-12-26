@@ -60,12 +60,12 @@ public class BatchServiceImpl implements BatchService {
      * @param textbook textbook对象
      */
     @Override
-    public void createFilling(Project project, Textbook textbook) {
-        if(project != null){    //这里也许需要改，可能出现project/textbook数据为{}的情况，不一定{}这种数据就是null，否则会多插入数据库很多空记录
-            batchMapper.createProject(project);
+    public void addFilling(Project project, Textbook textbook) {
+        if (project != null) {
+            batchMapper.addProject(project);
         }
-        if(textbook != null){
-            batchMapper.createTextbook(textbook);
+        if (textbook != null) {
+            batchMapper.addTextbook(textbook);
         }
     }
 }
