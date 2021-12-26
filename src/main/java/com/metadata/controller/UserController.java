@@ -5,12 +5,15 @@ import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.entity.User;
 import com.metadata.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
+@Api(tags = "用户类接口")
 @RestController
 @RequestMapping("users")
 public class UserController {
@@ -25,8 +28,9 @@ public class UserController {
      * @param userPhone 手机号
      * @return user对象
      */
+    @ApiOperation("获取用户个人资料的接口") //controller层swagger注释示例
     @GetMapping("info")
-    public Result getUserInfo(@RequestParam(name = "userPhone") String userPhone) {
+    public Result getUserInfo(@ApiParam("前端传来用户手机号码") @RequestParam(name = "userPhone") String userPhone) {
         //参数可写HttpServletRequest request
         //String userPhone = request.getParameter("userPhone");
         User data = userService.getUserByPhone(userPhone);
