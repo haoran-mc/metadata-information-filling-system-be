@@ -58,7 +58,7 @@ public class AccountController {
 
     @PostMapping("register")
     public Result register(@Validated @RequestBody RegisterDto registerDto, HttpServletResponse response) {
-        User user = userService.create(registerDto.getPhone(), SecureUtil.md5(registerDto.getPassword()));
+        User user = userService.createUser(registerDto.getPhone(), registerDto.getUsername(), SecureUtil.md5(registerDto.getPassword()));
 
         // TODO 是否需要判断插入不成功
 
