@@ -76,19 +76,8 @@ public class UserServiceImpl implements UserService {
         Project project = userMapper.getUserProject(id);
         Textbook textbook = userMapper.getUserTextbook(id);
 
-        if(category == 1){
-            Project pj = userMapper.getUserProject(phone);
-            return pj;
-        }else if(category == 2){
-            Textbook tb = userMapper.getUserTextbook(phone);
-            return tb;
-        }else {
-            try {
-                throw new Exception("类型参数出错");  //这里异常需要新建一个异常类CategoryException处理
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
+        userFillingDto.setProject(project);
+        userFillingDto.setTextbook(textbook);
+        return userFillingDto;
     }
 }
