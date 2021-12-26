@@ -1,8 +1,10 @@
 package com.metadata.controller;
 
+import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.User;
 import com.metadata.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
