@@ -30,7 +30,7 @@ public class MetadataController {
      */
     @GetMapping
     public Result getAllBatches() {
-        List<Batch> data = batchService.getAllBatches();
-        return Result.success(data);
+        List<Batch> batchList = batchService.getAllBatches();
+        return Result.success(batchList);
     }
 }
