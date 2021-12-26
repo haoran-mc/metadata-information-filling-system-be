@@ -36,8 +36,8 @@ public class ProjectController {
      * @return null
      */
     @DeleteMapping
-    public Result deleteProjectById(@RequestBody Project project) {
-        projectService.deleteProject(project);
+    public Result deleteProjectById(@RequestParam(name = "id") int id) {
+        projectService.deleteProjectById(id);
         return Result.success(null);
     }
 
