@@ -32,13 +32,11 @@ public class AccountController {
 
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
-        System.out.println("----" + loginDto);
-
         User user = userService.getUserByPhone(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
 
-        if (user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
+        if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
             log.error("密码不正确");
             return Result.fail("密码不正确");
         }
@@ -60,7 +58,7 @@ public class AccountController {
 
     @PostMapping("register")
     public Result register(@Validated @RequestBody RegisterDto registerDto, HttpServletResponse response) {
-        User user = userService.create(registerDto.getPhone(), SecureUtil.md5(registerDto.getPassword()));
+        User user = userService.createUser(registerDto.getPhone(), registerDto.getUsername(), SecureUtil.md5(registerDto.getPassword()));
 
         // TODO 是否需要判断插入不成功
 
@@ -70,8 +68,10 @@ public class AccountController {
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         return Result.success(MapUtil.builder()
+                .put("id", user.getId())
                 .put("phone", user.getPhone())
                 .put("username", user.getUsername())
+                .put("role", user.getRole())
                 .map()
         );
     }

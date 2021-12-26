@@ -17,25 +17,27 @@ public class TextbookController {
     /**
      * 获取指定名称书籍
      * @param year 年份
-     * @param batch 批次
+     * @param batch_idx 批次
      * @param name 名称
      * @return textbook对象集
      */
     @GetMapping
-    public Result selectProjectByProjectName(@RequestParam(name = "year") int year, @RequestParam(name = "batchid") int batch,
-                                             @RequestParam(name = "textbookName") String name) {
-        List<Textbook> tb = textbookService.selectTextbook(year, batch, name);
-        return Result.success(tb);
+    public Result selectTextbookByTextbookName(
+            @RequestParam(name = "year") int year,
+            @RequestParam(name = "batch_idx") int batch_idx,
+            @RequestParam(name = "textbookName") String name) {
+        List<Textbook> textbookList = textbookService.selectTextbookByName(year, batch_idx, name);
+        return Result.success(textbookList);
     }
 
     /**
      * 删除指定id书籍
-     * @param textbook textbook对象
+     * @param id 教材 id
      * @return null
      */
     @DeleteMapping
-    public Result deleteProjectById(@RequestBody Textbook textbook) {
-        textbookService.deleteTextbook(textbook);
+    public Result deleteTextbookById(@RequestParam(name = "id") int id) {
+        textbookService.deleteTextbook(id);
         return Result.success(null);
     }
 
@@ -45,7 +47,7 @@ public class TextbookController {
      * @return null
      */
     @PutMapping
-    public Result editProjectById(@RequestBody Textbook textbook) {
+    public Result updateTextbook(@RequestBody Textbook textbook) {
         textbookService.updateTextbook(textbook);
         return Result.success(null);
     }

@@ -8,7 +8,7 @@ spring:
     password: haoran232
     driver-class-name: com.mysql.cj.jdbc.Driver
 mybatis:
-  type-aliases-package: com.metadata.entity
+  type-aliases-package: com.metadata.entity; com.metadata.common.dto;
   mapper-locations: classpath:mapper/*.xml
 server:
   port: 8081

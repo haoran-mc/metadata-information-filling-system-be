@@ -14,48 +14,57 @@ import java.util.List;
 public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
+
+    /**
+     * 获取所有批次
+     * @return 所有批次列表
+     */
+    @Override
+    public List<Batch> getAllBatches() {
+        return batchMapper.getAllBatches();
+    }
+
     /**
      * 获取指定批次的项目impl
-     * @param year 年份
-     * @param batch 批次
-     * @param category 种类
+     *
+     * @param year      年份
+     * @param batch     批次
+     * @param page_num  页码
+     * @param page_size 分页尺寸
      * @return project对象集
      */
     @Override
-    public List<Project> getBatchProject(int year, int batch, String category) {
-        if(category == "project") {
-            return batchMapper.getBatchProject(year, batch);
-        }
-        return null;
+    public List<Project> getBatchProject(int year, int batch, int page_num, int page_size) {
+        return batchMapper.getBatchProject(year, batch);
     }
 
     /**
      * 获取指定批次的书籍impl
-     * @param year 年份
-     * @param batch 批次
-     * @param category 种类
+     *
+     * @param year      年份
+     * @param batch     批次
+     * @param page_num  页码
+     * @param page_size 分页尺寸
      * @return textbook对象集
      */
     @Override
-    public List<Textbook> getBatchTextbook(int year, int batch, String category) {
-        if(category == "textbook") {
-            return batchMapper.getBatchTextbook(year, batch);
-        }
-        return null;
+    public List<Textbook> getBatchTextbook(int year, int batch, int page_num, int page_size) {
+        return batchMapper.getBatchTextbook(year, batch);
     }
 
     /**
      * 插入新的填报impl
-     * @param project project对象
+     *
+     * @param project  project对象
      * @param textbook textbook对象
      */
     @Override
-    public void createFilling(Project project, Textbook textbook) {
-        if(project != null){    //这里也许需要改，可能出现project/textbook数据为{}的情况，不一定{}这种数据就是null，否则会多插入数据库很多空记录
-            batchMapper.createProject(project);
+    public void addFilling(Project project, Textbook textbook) {
+        if (project != null) {
+            batchMapper.addProject(project);
         }
-        if(textbook != null){
-            batchMapper.createTextbook(textbook);
+        if (textbook != null) {
+            batchMapper.addTextbook(textbook);
         }
     }
 }

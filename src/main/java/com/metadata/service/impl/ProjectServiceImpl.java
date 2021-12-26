@@ -16,23 +16,23 @@ public class ProjectServiceImpl implements ProjectService {
     /**
      * 获取指定名称项目impl
      * @param year 年份
-     * @param batch 批次
+     * @param batch_idx 批次
      * @param name 名称
      * @return project对象集
      */
     @Override
-    public List<Project> selectProject(int year, int batch, String name) {
-        List<Project> pjList = projectMapper.selectProject(year, batch, name);
-        return pjList;
+    public List<Project> selectProjectByName(int year, int batch_idx, String name) {
+        List<Project> projectList = projectMapper.selectProjectByName(year, batch_idx, name);
+        return projectList;
     }
 
     /**
      * 删除指定id项目impl
-     * @param project project对象
+     * @param id 项目 id
      */
     @Override
-    public void deleteProject(Project project) {
-        projectMapper.deleteProject(project);
+    public void deleteProjectById(int id) {
+        projectMapper.deleteProjectById(id);
     }
 
     /**

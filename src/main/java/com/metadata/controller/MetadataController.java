@@ -6,6 +6,9 @@ import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.service.MetadataService;
+import com.metadata.service.BatchService;
+import org.apache.shiro.authz.annotation.RequiresAuthentication;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,12 +31,12 @@ public class MetadataController {
 
     /**
      * 获取所有批次
-     * @return batch对象集
+     * @return 所有批次列表
      */
     @GetMapping
     public Result getAllBatches() {
-        List<Batch> data = metadataService.getAllBatches();
-        return Result.success(data);
+        List<Batch> batchList = batchService.getAllBatches();
+        return Result.success(batchList);
     }
 
 }
