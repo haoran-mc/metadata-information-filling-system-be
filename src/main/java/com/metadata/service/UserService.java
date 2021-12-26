@@ -21,6 +21,15 @@ public interface UserService {
     User getUserByPhone(String phone);
 
     /**
+     * 注册
+     * @param phone 电话
+     * @param username 用户名
+     * @param password 密码
+     * @return 创建的用户
+     */
+    User createUser(String phone, String username, String password);
+
+    /**
      * 通过用户对象更新用户个人的资料service
      *
      * @param user user对象
