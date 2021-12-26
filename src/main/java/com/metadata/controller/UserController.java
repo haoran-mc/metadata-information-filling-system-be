@@ -40,6 +40,7 @@ public class UserController {
      * @return null
      */
     @PutMapping("info")
+    @RequiresAuthentication
     public Result updateUserInfo(@RequestBody User user) {
         userService.updateUser(user);
         return Result.success(user);
