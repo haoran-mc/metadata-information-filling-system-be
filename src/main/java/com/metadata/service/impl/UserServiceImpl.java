@@ -34,23 +34,13 @@ public class UserServiceImpl implements UserService {
      * @return 返回创建的用户
      */
     @Override
-    public User create(String username, String password) {
-        return null;
-    }
-
-    /**
-     * 通过用户手机号查询用户个人的资料impl
-     * @param phone 手机号
-     * @return user对象
-     */
-    @Override
-    public User getUserByPhone(String phone) {
-        User result = userMapper.getUserByPhone(phone);
+    public User createUser(String phone, String username, String password) {
+        userMapper.createUser(phone, username, password);
         User user = new User();
-        user.setPhone(result.getPhone());
-        user.setUsername(result.getUsername());
-        user.setPassword(result.getPassword());
-        user.setRole(result.getRole());
+        user.setPhone(phone);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole("user");   // 注册的用户统一是普通用户
         return user;
     }
 
