@@ -22,7 +22,7 @@ public interface BatchService {
      * @param page_size 分页尺寸
      * @return 项目列表
      */
-    List<Project> getBatchProject(int year, int batch, int category);
+    List<Project> getBatchProject(int year, int batch, int page_num, int page_size);
 
     /**
      * 获取选定批次的书籍
@@ -32,7 +32,7 @@ public interface BatchService {
      * @param page_size 分页尺寸
      * @return 书籍列表
      */
-    List<Textbook> getBatchTextbook(int year, int batch, int category);
+    List<Textbook> getBatchTextbook(int year, int batch, int page_num, int page_size);
 
     /**
      * 用户填报
