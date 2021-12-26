@@ -51,7 +51,6 @@ public class BatchController {
             log.error("数据传送失败");
             return Result.fail("查询失败");
         }
-        return Result.fail("请检查是否返回了正确的数据！");
     }
 
     /**
