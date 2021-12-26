@@ -42,5 +42,5 @@ public interface UserService {
      * @param id 用户 id
      * @return 泛对象
      */
-    Object getUserBatches(String phone, int category);
+    UserFillingDto getUserAllFillings(int id);
 }
