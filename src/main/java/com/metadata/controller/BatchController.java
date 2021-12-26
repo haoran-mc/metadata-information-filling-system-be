@@ -28,14 +28,21 @@ public class BatchController {
      * @return project/textbook对象集
      */
     @GetMapping
-    public Result getBatch(@RequestParam(name = "year") int year, @RequestParam(name = "batchid") int batch,
-                           @RequestParam(name = "category") int category) {
-        List<Project> pj = batchService.getBatchProject(year, batch, category);
-        List<Textbook> tb = batchService.getBatchTextbook(year, batch, category);
-        if(pj != null){
-            return Result.success(pj);
-        }else if(tb != null){
-            return Result.success(tb);
+    public Result getBatch(
+            @RequestParam(name = "year") int year,
+            @RequestParam(name = "batch_idx") int batch_idx,
+            @RequestParam(name = "category") String category,
+            @RequestParam(name = "page_num") int page_num,
+            @RequestParam(name = "page_size") int page_size) {
+        if (category.equals("project")) {
+            List<Project> projectList = batchService.getBatchProject(year, batch_idx, page_num, page_size);
+            return Result.success(projectList);
+        } else if (category.equals("textbook")) {
+            List<Textbook> textbookList = batchService.getBatchTextbook(year, batch_idx, page_num, page_size);
+            return Result.success(textbookList);
+        } else {
+            log.error("数据传送失败");
+            return Result.fail("查询失败");
         }
         return Result.fail("请检查是否返回了正确的数据！");
     }
