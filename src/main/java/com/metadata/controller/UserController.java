@@ -42,7 +42,7 @@ public class UserController {
     @PutMapping("info")
     public Result updateUserInfo(@RequestBody User user) {
         userService.updateUser(user);
-        return Result.success(null);
+        return Result.success(user);
     }
 
     /**
