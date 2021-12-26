@@ -27,11 +27,10 @@ public class UserController {
      * @return user对象
      */
     @GetMapping("info")
-    public Result getUserInfo(@RequestParam(name = "userPhone") String userPhone) {
-        //参数可写HttpServletRequest request
-        //String userPhone = request.getParameter("userPhone");
-        User data = userService.getUserByPhone(userPhone);
-        return Result.success(data);
+    @RequiresAuthentication
+    public Result getUserInfo(@RequestParam(name = "id") int id) {
+        User user = userService.getUserById(id);
+        return Result.success(user);
     }
 
     /**
