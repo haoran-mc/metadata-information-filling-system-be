@@ -21,9 +21,9 @@ public class ProjectServiceImpl implements ProjectService {
      * @return project对象集
      */
     @Override
-    public List<Project> selectProject(int year, int batch, String name) {
-        List<Project> pjList = projectMapper.selectProject(year, batch, name);
-        return pjList;
+    public List<Project> selectProjectByName(int year, int batch_idx, String name) {
+        List<Project> projectList = projectMapper.selectProjectByName(year, batch_idx, name);
+        return projectList;
     }
 
     /**

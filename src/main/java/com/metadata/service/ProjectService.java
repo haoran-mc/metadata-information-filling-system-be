@@ -13,7 +13,7 @@ public interface ProjectService {
      * @param name 名称
      * @return project对象集
      */
-    List<Project> selectProject(int year, int batch, String name);
+    List<Project> selectProjectByName(int year, int batch_idx, String name);
 
     /**
      * 删除指定id项目service

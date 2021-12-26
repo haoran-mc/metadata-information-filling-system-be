@@ -22,10 +22,12 @@ public class TextbookController {
      * @return textbook对象集
      */
     @GetMapping
-    public Result selectProjectByProjectName(@RequestParam(name = "year") int year, @RequestParam(name = "batchid") int batch,
-                                             @RequestParam(name = "textbookName") String name) {
-        List<Textbook> tb = textbookService.selectTextbook(year, batch, name);
-        return Result.success(tb);
+    public Result selectTextbookByTextbookName(
+            @RequestParam(name = "year") int year,
+            @RequestParam(name = "batch_idx") int batch_idx,
+            @RequestParam(name = "textbookName") String name) {
+        List<Textbook> textbookList = textbookService.selectTextbookByName(year, batch_idx, name);
+        return Result.success(textbookList);
     }
 
     /**
@@ -45,7 +47,7 @@ public class TextbookController {
      * @return null
      */
     @PutMapping
-    public Result editProjectById(@RequestBody Textbook textbook) {
+    public Result updateTextbook(@RequestBody Textbook textbook) {
         textbookService.updateTextbook(textbook);
         return Result.success(null);
     }

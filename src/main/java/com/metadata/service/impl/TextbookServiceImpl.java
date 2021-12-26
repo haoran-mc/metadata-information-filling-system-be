@@ -20,9 +20,9 @@ public class TextbookServiceImpl implements TextbookService {
      * @return textbook对象集
      */
     @Override
-    public List<Textbook> selectTextbook(int year, int batch, String name) {
-        List<Textbook> tbList = textbookMapper.selectTextbook(year, batch, name);
-        return tbList;
+    public List<Textbook> selectTextbookByName(int year, int batch_idx, String name) {
+        List<Textbook> textbookList = textbookMapper.selectTextbookByName(year, batch_idx, name);
+        return textbookList;
     }
 
     /**

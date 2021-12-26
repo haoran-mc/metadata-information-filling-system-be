@@ -12,7 +12,7 @@ public interface TextbookService {
      * @param name 名称
      * @return textbook对象集
      */
-    List<Textbook> selectTextbook(int year, int batch, String name);
+    List<Textbook> selectTextbookByName(int year, int batch_idx, String name);
 
     /**
      * 删除指定id书籍service
