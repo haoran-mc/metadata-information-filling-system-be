@@ -32,8 +32,6 @@ public class AccountController {
 
     @PostMapping("login")
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
-        System.out.println("----" + loginDto);
-
         User user = userService.getUserByPhone(loginDto.getPhone());
 
         Assert.notNull(user, "用户不存在");
