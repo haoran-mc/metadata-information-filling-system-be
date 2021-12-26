@@ -71,7 +71,10 @@ public class UserServiceImpl implements UserService {
      * @return 泛对象
      */
     @Override
-    public Object getUserBatches(String phone, int category) {
+    public UserFillingDto getUserAllFillings(int id) {
+        UserFillingDto userFillingDto = new UserFillingDto();
+        Project project = userMapper.getUserProject(id);
+        Textbook textbook = userMapper.getUserTextbook(id);
 
         if(category == 1){
             Project pj = userMapper.getUserProject(phone);
