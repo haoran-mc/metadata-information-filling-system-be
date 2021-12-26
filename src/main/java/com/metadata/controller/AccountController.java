@@ -36,7 +36,7 @@ public class AccountController {
 
         Assert.notNull(user, "用户不存在");
 
-        if (user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
+        if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
             log.error("密码不正确");
             return Result.fail("密码不正确");
         }
