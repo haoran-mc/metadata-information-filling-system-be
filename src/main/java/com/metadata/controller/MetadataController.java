@@ -20,6 +20,8 @@ public class MetadataController {
     BatchService batchService;
 
     @PostMapping
+    @RequiresAuthentication
+    @RequiresRoles("admin")
     public Result generateBatch() {
         return null;
     }
