@@ -54,10 +54,11 @@ public class BatchController {
      * @return null
      */
     @PostMapping
-    public Result addData(@RequestBody JSONObject jsonObject) {
-        Project project = jsonObject.get("project", Project.class);
-        Textbook textbook = jsonObject.get("textbook", Textbook.class);
-        batchService.createFilling(project, textbook);
+    @RequiresAuthentication
+    public Result addFilling(@RequestBody UserFillingDto userFillingDto) {
+        Project project = userFillingDto.getProject();
+        Textbook textbook = userFillingDto.getTextbook();
+        batchService.addFilling(project, textbook);
         return Result.success(null);
     }
 }
