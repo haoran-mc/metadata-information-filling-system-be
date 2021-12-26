@@ -28,7 +28,17 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 用户注册impl
+     * 通过手机号码获取用户
+     * @param phone 手机号码
+     * @return 一个用户
+     */
+    public User getUserByPhone(String phone) {
+        return userMapper.getUserByPhone(phone);
+    }
+
+    /**
+     * 注册
+     * @param phone 电话
      * @param username 用户名
      * @param password 密码
      * @return 返回创建的用户
