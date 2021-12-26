@@ -4,34 +4,42 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.metadata.mapper.UserMapper">
-    <select id="getUserById" resultType="User" parameterType="int">
+    <!-- 通过用户 id 查询用户个人的资料 -->
+    <select id="getUserById" resultType="user">
         select * from user where id = #{id}
     </select>
 
-    <!--通过用户手机号查询用户个人的资料sql-->
-    <select id="getUserByPhone" resultType="User" parameterType="String">
+    <!-- 通过手机号码查询用户 -->
+    <select id="getUserByPhone" resultType="user">
         select * from user where phone = #{phone}
     </select>
 
-    <!--通过用户对象更新用户个人的资料sql-->
+    <!-- 注册，创建用户 -->
+    <insert id="createUser">
+        insert into user (phone, username, password)
+        values (#{phone}, #{username}, #{password})
+    </insert>
+
+    <!-- 通过用户对象更新用户个人的资料 -->
     <update id="updateUser">
         update user
         set
             username = #{user.username},
             password = #{user.password}
-        where phone = #{user.phone}
+        where id = #{user.id}
     </update>
 
-    <!--获取用户所填写项目的详细信息sql-->
-    <select id="getUserProject" resultType="Project">
+
+    <!-- 获取用户所填写项目的详细信息 -->
+    <select id="getUserProject" resultType="project">
         select * from project
-        where phone = #{phone}
+        where id = #{id}
     </select>
 
-    <!--获取用户所填写书籍的详细信息sql-->
-    <select id="getUserTextbook" resultType="Textbook">
+    <!-- 获取用户所填写书籍的详细信息 -->
+    <select id="getUserTextbook" resultType="textbook">
         select * from textbook
-        where phone = #{phone}
+        where id = #{id}
     </select>
 
 </mapper>
