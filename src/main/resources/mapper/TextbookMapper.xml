@@ -13,7 +13,7 @@
     <!--删除指定id书籍sql-->
     <delete id="deleteTextbook">
         delete from textbook
-        where id = #{textbook.id}
+        where id = #{id}
     </delete>
 
     <!--更新指定id书籍sql-->

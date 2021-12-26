@@ -19,7 +19,7 @@ public interface TextbookService {
      * @param id 教材 id
      * @return null
      */
-    void deleteTextbook(Textbook textbook);
+    void deleteTextbook(int id);
 
     /**
      * 更新指定id书籍service

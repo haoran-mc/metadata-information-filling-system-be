@@ -31,8 +31,8 @@ public class ProjectServiceImpl implements ProjectService {
      * @param id 项目 id
      */
     @Override
-    public void deleteProject(Project project) {
-        projectMapper.deleteProject(project);
+    public void deleteProjectById(int id) {
+        projectMapper.deleteProjectById(id);
     }
 
     /**

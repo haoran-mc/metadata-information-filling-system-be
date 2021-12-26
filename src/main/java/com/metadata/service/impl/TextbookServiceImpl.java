@@ -31,8 +31,8 @@ public class TextbookServiceImpl implements TextbookService {
      * @return null
      */
     @Override
-    public void deleteTextbook(Textbook textbook) {
-        textbookMapper.deleteTextbook(textbook);
+    public void deleteTextbook(int id) {
+        textbookMapper.deleteTextbook(id);
     }
 
     /**

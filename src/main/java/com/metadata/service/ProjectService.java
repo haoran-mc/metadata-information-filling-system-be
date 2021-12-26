@@ -19,7 +19,7 @@ public interface ProjectService {
      * 删除指定id项目service
      * @param id 项目 id
      */
-    void deleteProject(Project project);
+    void deleteProjectById(int id);
 
     /**
      * 更新指定id项目service

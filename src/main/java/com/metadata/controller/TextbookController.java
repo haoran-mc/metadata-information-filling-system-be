@@ -34,8 +34,8 @@ public class TextbookController {
      * @return null
      */
     @DeleteMapping
-    public Result deleteProjectById(@RequestBody Textbook textbook) {
-        textbookService.deleteTextbook(textbook);
+    public Result deleteTextbookById(@RequestParam(name = "id") int id) {
+        textbookService.deleteTextbook(id);
         return Result.success(null);
     }
 
