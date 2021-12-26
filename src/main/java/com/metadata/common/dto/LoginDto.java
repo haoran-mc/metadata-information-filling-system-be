@@ -8,6 +8,9 @@ import java.io.Serializable;
 
 @Data
 public class LoginDto implements Serializable {
+    @NotBlank(message = "id 不能为空")
+    private int id;
+
     @NotBlank(message = "电话不能为空")
     private String phone;
 
