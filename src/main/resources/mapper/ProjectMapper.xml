@@ -11,9 +11,9 @@
     </select>
 
     <!--删除指定id项目sql-->
-    <delete id="deleteProject">
+    <delete id="deleteProjectById">
         delete from project
-        where id = #{project.id}
+        where id = #{id}
     </delete>
 
     <!--更新指定id项目sql-->
