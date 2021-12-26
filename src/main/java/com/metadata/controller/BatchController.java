@@ -22,6 +22,8 @@ public class BatchController {
     @Autowired
     BatchService batchService;
 
+    private final static Logger log = LoggerFactory.getLogger(BatchController.class);
+
     /**
      * 获取指定批次的填报
      *
