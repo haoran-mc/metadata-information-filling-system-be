@@ -11,15 +11,7 @@ public interface UserService {
      * @param id 用户 id
      * @return user对象
      */
-    User getById(int id);
-
-    /**
-     * 用户注册service
-     * @param phone 手机号
-     * @param password 密码
-     * @return user对象
-     */
-    User create(String phone, String password);
+    User getUserById(int id);
 
     /**
      * 通过手机号查询用户
