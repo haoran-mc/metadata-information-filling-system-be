@@ -22,9 +22,9 @@ public class UserServiceImpl implements UserService {
      * @return user对象
      */
     @Override
-    public User getById(int id) {
-        User user = getById(id);
-        return user;
+    public User getUserById(int id) {
+        // TODO 这里可以返回密码吗？
+        return userMapper.getUserById(id);
     }
 
     /**
