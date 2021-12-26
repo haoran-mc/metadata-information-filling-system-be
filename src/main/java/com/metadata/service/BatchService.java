@@ -39,5 +39,5 @@ public interface BatchService {
      * @param project project对象
      * @param textbook textbook对象
      */
-    void createFilling(Project project, Textbook textbook);
+    void addFilling(Project project, Textbook textbook);
 }
