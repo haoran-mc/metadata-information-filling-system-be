@@ -68,8 +68,10 @@ public class AccountController {
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         return Result.success(MapUtil.builder()
+                .put("id", user.getId())
                 .put("phone", user.getPhone())
                 .put("username", user.getUsername())
+                .put("role", user.getRole())
                 .map()
         );
     }
