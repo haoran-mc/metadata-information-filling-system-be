@@ -47,7 +47,7 @@ public class ProjectController {
      * @return null
      */
     @PutMapping
-    public Result editProjectById(@RequestBody Project project) {
+    public Result updateProjectById(@RequestBody Project project) {
         projectService.updateProject(project);
         return Result.success(null);
     }
