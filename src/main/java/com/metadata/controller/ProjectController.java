@@ -22,10 +22,12 @@ public class ProjectController {
      * @return project对象集
      */
     @GetMapping
-    public Result selectProjectByProjectName(@RequestParam(name = "year") int year, @RequestParam(name = "batchid") int batch,
-                                             @RequestParam(name = "projectName") String name) {
-        List<Project> pj = projectService.selectProject(year, batch, name);
-        return Result.success(pj);
+    public Result selectProjectByName(
+            @RequestParam(name = "year") int year,
+            @RequestParam(name = "batch_idx") int batch_idx,
+            @RequestParam(name = "project_name") String name) {
+        List<Project> projectList = projectService.selectProjectByName(year, batch_idx, name);
+        return Result.success(projectList);
     }
 
     /**
