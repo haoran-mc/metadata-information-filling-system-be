@@ -1,5 +1,6 @@
 package com.metadata.controller;
 
+import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
@@ -51,20 +52,12 @@ public class UserController {
 
     /**
      * 获取用户所填写书籍的详细信息
-     * @param userPhone 手机号
-     * @param category 种类
+     * @param id 用户 id
      * @return project/textbook对象
      */
     @GetMapping("batches")
-    public Result getMyFilling(@RequestParam(name = "userPhone") String userPhone,
-                               @RequestParam(name = "category") String category) {
-        if(category == "project"){
-            Project project = userService.getUserProject(userPhone);
-            return Result.success(project);
-        }else if (category == "textbook"){
-            Textbook textbook = userService.getUserTextbook(userPhone);
-            return Result.success(textbook);
-        }
-        return Result.fail("category不合法！");
+    public Result getMyFilling(@RequestParam(name = "id") int id) {
+        UserFillingDto userFillingDto = userService.getUserAllFillings(id);
+        return Result.success(userFillingDto);
     }
 }
