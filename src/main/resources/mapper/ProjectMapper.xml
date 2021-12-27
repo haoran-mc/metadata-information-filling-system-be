@@ -6,19 +6,19 @@
 <mapper namespace="com.metadata.mapper.ProjectMapper">
     <!-- 获取指定名称项目 -->
     <select id="selectProjectByName" resultType="project">
-        select * from project
-        where year = #{year} and batch_idx = #{batch_idx} and name like concat('%',#{name},'%')
+        select * from metadata.project
+        where year = #{year} and batch = #{batch_idx} and name like concat('%',#{name},'%')
     </select>
 
     <!-- 删除指定id项目 -->
     <delete id="deleteProjectById">
-        delete from project
+        delete from metadata.project
         where id = #{id}
     </delete>
 
     <!-- 更新指定id项目 -->
     <update id="updateProject">
-        update project
+        update metadata.project
         set
             name = #{project.name},
             host = #{project.host},

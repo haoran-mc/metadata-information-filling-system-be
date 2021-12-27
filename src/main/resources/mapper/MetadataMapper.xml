@@ -10,7 +10,7 @@
 
     <!-- 插入新的batch记录 -->
     <insert id="createBatch">
-        insert into batch (year, batch_idx, batch_name, end_time)
+        insert into metadata.batch (year, batch_idx, batch_name, end_time)
         values (#{batch.year}, #{batch.batch_idx}, #{batch.batch_name}, #{batch.end_time})
     </insert>
 

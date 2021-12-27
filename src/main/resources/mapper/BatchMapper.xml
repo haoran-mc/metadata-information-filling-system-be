@@ -5,13 +5,13 @@
 <mapper namespace="com.metadata.mapper.BatchMapper">
     <!-- 获取指定批次的项目 -->
     <select id="getBatchProject" resultType="project">
-        select * from project
+        select * from metadata.project
         where year = #{year} and batch = #{batch}
     </select>
 
     <!-- 获取指定批次的书籍 -->
     <select id="getBatchTextbook" resultType="textbook">
-        select * from textbook
+        select * from metadata.textbook
         where year = #{year} and batch = #{batch}
     </select>
 
