@@ -20,6 +20,22 @@ public class MetadataController {
     @Autowired
     MetadataService metadataService;
 
+    /**
+     * 获取所有批次
+     *
+     * @return 所有批次列表
+     */
+    @GetMapping
+    public Result getAllBatches() {
+        List<Batch> batchList = metadataService.getAllBatches();
+        return Result.success(batchList);
+    }
+
+    /**
+     * 生成批次
+     * @param jsonObject { Project, Textbook, Batch }
+     * @return 200
+     */
     @PostMapping
     public Result generateBatch(@RequestBody JSONObject jsonObject) {
         Project project = jsonObject.get("project", Project.class);
@@ -28,15 +44,4 @@ public class MetadataController {
         metadataService.insertSpecialData(project, textbook, batch);
         return Result.success(null);
     }
-
-    /**
-     * 获取所有批次
-     * @return 所有批次列表
-     */
-    @GetMapping
-    public Result getAllBatches() {
-        List<Batch> batchList = batchService.getAllBatches();
-        return Result.success(batchList);
-    }
-
 }
