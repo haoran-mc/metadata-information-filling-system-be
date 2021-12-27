@@ -9,10 +9,9 @@ import java.util.List;
 
 @Mapper
 public interface MetadataMapper {
-
     /**
-     * 获取所有批次mapper
-     * @return batch对象集
+     * 主页获取所有批次
+     * @return 批次列表
      */
     List<Batch> getAllBatches();
 

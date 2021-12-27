@@ -21,7 +21,7 @@ public class MetadataServiceImpl implements MetadataService {
     BatchMapper batchMapper;
 
     /**
-     * 获取所有批次impl
+     * 获取所有批次
      * @return batch对象集
      */
     @Override
@@ -29,6 +29,12 @@ public class MetadataServiceImpl implements MetadataService {
         return metadataMapper.getAllBatches();
     }
 
+    /**
+     * 插入特殊数据
+     * @param project 插入项目特殊数据
+     * @param textbook 插入教材特殊数据
+     * @param batch 插入批次
+     */
     @Override
     public void insertSpecialData(Project project, Textbook textbook, Batch batch) {
         if(project != null){    //这里也许需要改，可能出现project/textbook数据为{}的情况，不一定{}这种数据就是null，否则会多插入数据库很多空记录
