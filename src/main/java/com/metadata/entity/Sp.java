@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class Sp {
     int id;
     int year;
-    int batch;
+    int batch_idx;
     int project_id;
     int textbook_id;
 }
