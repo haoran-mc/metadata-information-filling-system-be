@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-@Service("batchService")
+@Service
 public class BatchServiceImpl implements BatchService {
     @Autowired
     BatchMapper batchMapper;
