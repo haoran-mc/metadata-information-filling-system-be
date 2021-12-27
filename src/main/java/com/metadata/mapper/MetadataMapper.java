@@ -19,15 +19,23 @@ public interface MetadataMapper {
      * 插入新的batch记录mapper
      * @param batch batch对象
      */
-    void createBatch(@Param("batch") Batch batch);
+    void addBatch(@Param("batch") Batch batch);
 
     /**
      * 插入新的sp记录
      * @param sp sp对象
      */
-    void createSp(@Param("sp") Sp sp);
+    void addSp(@Param("sp") Sp sp);
 
-    int getLatestProjectId();
+    /**
+     * 获取特殊项目 id
+     * @return 项目
+     */
+    int getSpProjectId();
 
-    int getLatestTextbookId();
+    /**
+     * 获取特殊教材 id
+     * @return 教材
+     */
+    int getSpTextbookId();
 }
