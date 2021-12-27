@@ -16,15 +16,6 @@ public class BatchServiceImpl implements BatchService {
     BatchMapper batchMapper;
 
     /**
-     * 获取所有批次
-     * @return 所有批次列表
-     */
-    @Override
-    public List<Batch> getAllBatches() {
-        return batchMapper.getAllBatches();
-    }
-
-    /**
      * 获取指定批次的项目impl
      *
      * @param year      年份

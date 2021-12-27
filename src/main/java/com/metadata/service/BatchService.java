@@ -6,13 +6,6 @@ import com.metadata.entity.Textbook;
 import java.util.List;
 
 public interface BatchService {
-
-    /**
-     * 获取所有批次
-     * @return 所有批次列表
-     */
-    List<Batch> getAllBatches();
-
     /**
      * 获取选定批次的项目
      * @param year 年份
