@@ -17,11 +17,11 @@
 
     <!-- 插入新项目 -->
     <insert id="addProject">
-        insert into project (name, host, phone, category_first_level,
+        insert into metadata.project (name, host, username, category_first_level,
                              category_second_level, category_third_level,
                              department, money, start_time, end_time, number,
                              attachment_path, year, batch)
-        values (#{project.name}, #{project.host},  #{project.phone}, #{project.category_first_level},
+        values (#{project.name}, #{project.host},  #{project.username}, #{project.category_first_level},
                 #{project.category_second_level}, #{project.category_third_level},
                 #{project.department}, #{project.money}, #{project.start_time}, #{project.end_time}, #{project.number},
                 #{project.attachment_path}, #{project.year}, #{project.batch})
@@ -29,10 +29,10 @@
 
     <!-- 插入新书籍 -->
     <insert id="addTextbook">
-        insert into textbook (name, phone, editor, publishing_house,
+        insert into metadata.textbook (name, username, editor, publishing_house,
                               publishing_time, selection_time, attachment_path,
                               year, batch)
-        values (#{textbook.name}, #{textbook.phone}, #{textbook.editor}, #{textbook.publishing_house},
+        values (#{textbook.name}, #{textbook.username}, #{textbook.editor}, #{textbook.publishing_house},
                 #{textbook.publishing_time}, #{textbook.selection_time}, #{textbook.attachment_path},
                 #{textbook.year}, #{textbook.batch})
     </insert>

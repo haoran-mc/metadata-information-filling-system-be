@@ -2,6 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.metadata.mapper.MetadataMapper">
     <!-- 获取所有批次 -->
     <select id="getAllBatches" resultType="batch">
@@ -22,13 +23,13 @@
 
     <!--获取project表最新记录的id sql-->
     <!--select max(id) from project-->
-    <select id="getLatestProjectId" resultType="int">
-        select max(id) from project
+    <select id="getSpProjectId" resultType="int">
+        select max(id) from metadata.project
     </select>
 
     <!--获取Textbook表最新记录的id sql-->
     <!--select max(id) from textbook-->
-    <select id="getLatestTextbookId" resultType="int">
-        select max(id) from textbook
+    <select id="getSpTextbookId" resultType="int">
+        select max(id) from metadata.textbook
     </select>
 </mapper>

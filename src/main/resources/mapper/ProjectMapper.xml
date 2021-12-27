@@ -22,7 +22,7 @@
         set
             name = #{project.name},
             host = #{project.host},
-            phone = #{project.phone},
+            username = #{project.username},
             category_first_level = #{project.category_first_level},
             category_second_level = #{project.category_second_level},
             category_third_level = #{project.category_third_level},

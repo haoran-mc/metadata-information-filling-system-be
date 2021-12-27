@@ -21,7 +21,7 @@
         update metadata.textbook
         set
             name = #{textbook.name},
-            phone = #{textbook.phone},
+            username = #{textbook.username},
             editor = #{textbook.editor},
             publishing_house = #{textbook.publishing_house},
             publishing_time = #{textbook.publishing_time},
