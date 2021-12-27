@@ -37,10 +37,13 @@ public class MetadataController {
      * @return 200
      */
     @PostMapping
+    @RequiresAuthentication
+    @RequiresRoles("admin")
     public Result generateBatch(@RequestBody JSONObject jsonObject) {
         Project project = jsonObject.get("project", Project.class);
         Textbook textbook = jsonObject.get("textbook", Textbook.class);
-        Batch batch = jsonObject.get("batch",Batch.class);
+        Batch batch = jsonObject.get("batch", Batch.class);
+
         metadataService.insertSpecialData(project, textbook, batch);
         return Result.success(null);
     }
