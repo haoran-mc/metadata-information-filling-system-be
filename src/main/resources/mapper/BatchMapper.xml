@@ -3,18 +3,13 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metadata.mapper.BatchMapper">
-    <!--获取所有批次sql-->
-    <select id="getAllBatches" resultType="batch">
-        select * from batch
-    </select>
-
-    <!--获取指定批次的项目sql-->
+    <!-- 获取指定批次的项目 -->
     <select id="getBatchProject" resultType="project">
         select * from project
         where year = #{year} and batch = #{batch}
     </select>
 
-    <!--获取指定批次的书籍sql-->
+    <!-- 获取指定批次的书籍 -->
     <select id="getBatchTextbook" resultType="textbook">
         select * from textbook
         where year = #{year} and batch = #{batch}

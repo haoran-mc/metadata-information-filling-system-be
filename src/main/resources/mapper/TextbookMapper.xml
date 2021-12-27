@@ -4,19 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.metadata.mapper.TextbookMapper">
-    <!--获取指定名称书籍sql-->
+    <!-- 获取指定名称书籍 -->
     <select id="selectTextbookByName" resultType="Textbook">
         select * from textbook
         where year = #{year} and batch_idx = #{batch_idx} and name like concat('%', #{name}, '%')
     </select>
 
-    <!--删除指定id书籍sql-->
+    <!-- 删除指定id书籍 -->
     <delete id="deleteTextbook">
         delete from textbook
         where id = #{id}
     </delete>
 
-    <!--更新指定id书籍sql-->
+    <!-- 更新指定id书籍 -->
     <update id="updateTextbook">
         update textbook
         set

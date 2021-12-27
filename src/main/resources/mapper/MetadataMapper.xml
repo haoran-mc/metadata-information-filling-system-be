@@ -3,21 +3,21 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metadata.mapper.MetadataMapper">
-    <!--获取所有批次sql-->
-    <select id="getAllBatches" resultType="Batch">
-        select * from batch
+    <!-- 获取所有批次 -->
+    <select id="getAllBatches" resultType="batch">
+        select * from metadata.batch
     </select>
 
-    <!--插入新的batch记录sql-->
+    <!-- 插入新的batch记录 -->
     <insert id="createBatch">
         insert into batch (year, batch_idx, batch_name, end_time)
         values (#{batch.year}, #{batch.batch_idx}, #{batch.batch_name}, #{batch.end_time})
     </insert>
 
-    <!--插入新的sp记录sql-->
-    <insert id="createSp">
-        insert sp (year, batch, project_id, textbook_id)
-        values (#{sp.year}, #{sp.batch}, #{sp.project_id}, #{sp.textbook_id})
+    <!-- 插入新的sp记录 -->
+    <insert id="addSp">
+        insert metadata.sp (year, batch_idx, project_id, textbook_id)
+        values (#{sp.year}, #{sp.batch_idx}, #{sp.project_id}, #{sp.textbook_id})
     </insert>
 
     <!--获取project表最新记录的id sql-->
