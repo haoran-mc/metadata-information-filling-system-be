@@ -16,6 +16,12 @@
         where id = #{id}
     </delete>
 
+    <!-- 获取指定id项目 -->
+    <select id="getProjectById" resultType="project">
+        select * from metadata.project
+        where id = #{id}
+    </select>
+
     <!-- 更新指定id项目 -->
     <update id="updateProject">
         update metadata.project
