@@ -7,12 +7,26 @@
     <select id="getBatchProject" resultType="project">
         select * from metadata.project
         where year = #{year} and batch = #{batch}
+        <if test="page_num!=null and page_size!=null">
+            limit #{page_num}, #{page_size}
+        </if>
+    </select>
+    
+    <select id="getProjectCount" resultType="int">
+        select count(*) from metadata.project
     </select>
 
     <!-- 获取指定批次的书籍 -->
     <select id="getBatchTextbook" resultType="textbook">
         select * from metadata.textbook
         where year = #{year} and batch = #{batch}
+        <if test="page_num!=null and page_size!=null">
+            limit #{page_num}, #{page_size}
+        </if>
+    </select>
+
+    <select id="getTextbookCount" resultType="int">
+        select count(*) from metadata.textbook
     </select>
 
     <!-- 插入新项目 -->

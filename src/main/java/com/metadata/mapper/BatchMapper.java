@@ -16,7 +16,12 @@ public interface BatchMapper {
      * @param batch 批次
      * @return project对象集
      */
-    List<Project> getBatchProject(@Param("year") int year, @Param("batch") int batch);
+    List<Project> getBatchProject(
+            @Param("year") int year,
+            @Param("batch") int batch,
+            @Param("page_num") int page_num,
+            @Param("page_size") int page_size
+    );
 
     /**
      * 获取指定批次的书籍mapper
@@ -24,7 +29,12 @@ public interface BatchMapper {
      * @param batch 批次
      * @return textbook对象集
      */
-    List<Textbook> getBatchTextbook(@Param("year") int year, @Param("batch") int batch);
+    List<Textbook> getBatchTextbook(
+            @Param("year") int year,
+            @Param("batch") int batch,
+            @Param("page_num") int page_num,
+            @Param("page_size") int page_size
+    );
 
     /**
      * 插入新项目mapper

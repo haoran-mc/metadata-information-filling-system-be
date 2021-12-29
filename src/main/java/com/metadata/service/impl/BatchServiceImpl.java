@@ -26,7 +26,7 @@ public class BatchServiceImpl implements BatchService {
      */
     @Override
     public List<Project> getBatchProject(int year, int batch, int page_num, int page_size) {
-        return batchMapper.getBatchProject(year, batch);
+        return batchMapper.getBatchProject(year, batch, page_num, page_size);
     }
 
     /**
@@ -40,7 +40,7 @@ public class BatchServiceImpl implements BatchService {
      */
     @Override
     public List<Textbook> getBatchTextbook(int year, int batch, int page_num, int page_size) {
-        return batchMapper.getBatchTextbook(year, batch);
+        return batchMapper.getBatchTextbook(year, batch, page_num, page_size);
     }
 
     /**
