@@ -20,6 +20,12 @@ public class MetadataController {
     @Autowired
     MetadataService metadataService;
 
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    TextbookService textbookService;
+
     /**
      * 获取所有批次
      *
@@ -46,5 +52,17 @@ public class MetadataController {
 
         metadataService.insertSpecialData(project, textbook, batch);
         return Result.success(null);
+    }
+
+    @GetMapping("sp")
+    public Result getSpProjectAndTextbook(
+            @RequestParam(name = "projectId") int projectId,
+            @RequestParam(name = "textbookId") int textbookId) {
+        Project project = projectService.getProjectById(projectId);
+        Textbook textbook = textbookService.getTextbookById(textbookId);
+        SpDto spDto = new SpDto();
+        spDto.setProject(project);
+        spDto.setTextbook(textbook);
+        return Result.success(spDto);
     }
 }

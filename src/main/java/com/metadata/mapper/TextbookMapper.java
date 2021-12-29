@@ -29,6 +29,13 @@ public interface TextbookMapper {
     void deleteTextbook(@Param("id") int id);
 
     /**
+     * 通过 sp 表中的 textbook_id 获取 textbook
+     * @param id
+     * @return
+     */
+    Textbook getTextbookById(@Param("id") int id);
+
+    /**
      * 更新指定id书籍mapper
      * @param textbook textbook对象
      * @return null

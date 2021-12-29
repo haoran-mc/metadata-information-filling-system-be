@@ -22,6 +22,13 @@ public interface ProjectService {
     void deleteProjectById(int id);
 
     /**
+     * 通过 sp 表中的 project_id 获取 project
+     * @param id
+     * @return
+     */
+    Project getProjectById(int id);
+
+    /**
      * 更新指定id项目service
      * @param project project对象
      */

@@ -22,6 +22,13 @@ public interface TextbookService {
     void deleteTextbook(int id);
 
     /**
+     * 通过 sp 表中的 textbook_id 获取 textbook
+     * @param id
+     * @return
+     */
+    Textbook getTextbookById(int id);
+
+    /**
      * 更新指定id书籍service
      * @param textbook textbook对象
      * @return null

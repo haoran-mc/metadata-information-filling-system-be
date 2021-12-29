@@ -30,6 +30,13 @@ public interface ProjectMapper {
     void deleteProjectById(@Param("id") int id);
 
     /**
+     * 通过 sp 的 project_id 获取 project
+     * @param id
+     * @return
+     */
+    Project getProjectById(@Param("id") int id);
+
+    /**
      * 更新指定id项目mapper
      * @param project project对象
      */

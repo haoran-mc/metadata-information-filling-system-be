@@ -36,6 +36,16 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     /**
+     * 通过 sp 表中的 project_id 获取 project
+     * @param id
+     * @return
+     */
+    @Override
+    public Project getProjectById(int id) {
+        return projectMapper.getProjectById(id);
+    }
+
+    /**
      * 更新指定id项目impl
      * @param project project对象
      */

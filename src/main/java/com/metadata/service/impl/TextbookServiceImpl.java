@@ -36,6 +36,16 @@ public class TextbookServiceImpl implements TextbookService {
     }
 
     /**
+     * 通过 sp 表中的 textbook_id 获取 textbook
+     * @param id
+     * @return
+     */
+    @Override
+    public Textbook getTextbookById(int id) {
+        return textbookMapper.getTextbookById(id);
+    }
+
+    /**
      * 更新指定id书籍impl
      * @param textbook textbook对象
      * @return null
