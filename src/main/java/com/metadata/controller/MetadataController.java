@@ -10,8 +10,6 @@ import com.metadata.service.MetadataService;
 import com.metadata.service.BatchService;
 import com.metadata.service.ProjectService;
 import com.metadata.service.TextbookService;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -46,8 +44,6 @@ public class MetadataController {
      * @return 200
      */
     @PostMapping
-    @RequiresAuthentication
-    @RequiresRoles("admin")
     public Result generateBatch(@RequestBody JSONObject jsonObject) {
         Project project = jsonObject.get("project", Project.class);
         Textbook textbook = jsonObject.get("textbook", Textbook.class);
