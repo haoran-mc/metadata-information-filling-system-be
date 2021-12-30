@@ -1,5 +1,9 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
+import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.json.JSONObject;
 import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
@@ -7,7 +11,6 @@ import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.service.BatchService;
-import org.apache.shiro.authz.annotation.RequiresAuthentication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,8 @@ public class BatchController {
      * @param page_size 分页尺寸
      * @return project/textbook对象集
      */
+    // @SaCheckLogin
+    // @SaCheckRole(value = {"user", "admin", "super_admin"}, mode = SaMode.OR)
     @GetMapping
     public Result getBatch(
             @RequestParam(name = "year") int year,
@@ -60,7 +65,6 @@ public class BatchController {
      * @return null
      */
     @PostMapping
-    @RequiresAuthentication
     public Result addFilling(@RequestBody UserFillingDto userFillingDto) {
         Project project = userFillingDto.getProject();
         Textbook textbook = userFillingDto.getTextbook();
