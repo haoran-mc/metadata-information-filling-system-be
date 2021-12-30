@@ -29,6 +29,13 @@ public interface ProjectService {
     Project getProjectById(int id);
 
     /**
+     * 获取我的项目列表
+     * @param hostname 主持人
+     * @return 项目列表
+     */
+    List<Project> getMyProjects(String hostname);
+
+    /**
      * 更新指定id项目service
      * @param project project对象
      */

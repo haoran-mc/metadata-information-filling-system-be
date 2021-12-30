@@ -5,6 +5,8 @@ import com.metadata.common.lang.Result;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.entity.User;
+import com.metadata.service.ProjectService;
+import com.metadata.service.TextbookService;
 import com.metadata.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Api(tags = "用户类接口")
 @RestController
 @RequestMapping("users")
@@ -21,6 +25,12 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    TextbookService textbookService;
 
     private final static Logger log = LoggerFactory.getLogger(UserController.class);
 
@@ -59,5 +69,19 @@ public class UserController {
     public Result getMyFilling(@RequestParam(name = "id") int id) {
         UserFillingDto userFillingDto = userService.getUserAllFillings(id);
         return Result.success(userFillingDto);
+    }
+
+    @GetMapping("data/projects")
+    public Result getMyProjects(@RequestParam(name = "id") int id) {
+        User user = userService.getUserById(id);
+        List<Project> projectList = projectService.getMyProjects(user.getUsername());
+        return Result.success(projectList);
+    }
+
+    @GetMapping("data/textbooks")
+    public Result getMyTextbooks(@RequestParam(name = "id") int id) {
+        User user = userService.getUserById(id);
+        List<Textbook> textbookList = textbookService.getMyTextbooks(user.getUsername());
+        return Result.success(textbookList);
     }
 }

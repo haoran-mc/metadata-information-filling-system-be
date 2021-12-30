@@ -45,6 +45,10 @@ public class TextbookServiceImpl implements TextbookService {
         return textbookMapper.getTextbookById(id);
     }
 
+    public List<Textbook> getMyTextbooks(String hostname) {
+        return textbookMapper.getMyTextbooks(hostname);
+    }
+
     /**
      * 更新指定id书籍impl
      * @param textbook textbook对象

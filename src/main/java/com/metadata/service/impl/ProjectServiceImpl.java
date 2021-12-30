@@ -46,6 +46,15 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     /**
+     * 获取我的项目列表
+     * @param hostname 主持人
+     * @return 项目列表
+     */
+    public List<Project> getMyProjects(String hostname) {
+        return projectMapper.getMyProjects(hostname);
+    }
+
+    /**
      * 更新指定id项目impl
      * @param project project对象
      */

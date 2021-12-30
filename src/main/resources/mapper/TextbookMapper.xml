@@ -5,7 +5,7 @@
 
 <mapper namespace="com.metadata.mapper.TextbookMapper">
     <!-- 获取指定名称书籍 -->
-    <select id="selectTextbookByName" resultType="Textbook">
+    <select id="selectTextbookByName" resultType="textbook">
         select * from metadata.textbook
         where year = #{year} and batch = #{batch_idx} and name like concat('%', #{name}, '%')
     </select>
@@ -22,12 +22,17 @@
         where id = #{id}
     </select>
 
+    <select id="getMyTextbooks" resultType="textbook">
+        select * from metadata.textbook
+        where editor = #{hostname}
+    </select>
+
     <!-- 更新指定id书籍 -->
     <update id="updateTextbook">
         update metadata.textbook
         set
             name = #{textbook.name},
-            username = #{textbook.username},
+            phone = #{textbook.phone},
             editor = #{textbook.editor},
             publishing_house = #{textbook.publishing_house},
             publishing_time = #{textbook.publishing_time},

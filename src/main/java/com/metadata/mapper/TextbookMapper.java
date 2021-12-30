@@ -35,6 +35,8 @@ public interface TextbookMapper {
      */
     Textbook getTextbookById(@Param("id") int id);
 
+    List<Textbook> getMyTextbooks(@Param("hostname") String hostname);
+
     /**
      * 更新指定id书籍mapper
      * @param textbook textbook对象

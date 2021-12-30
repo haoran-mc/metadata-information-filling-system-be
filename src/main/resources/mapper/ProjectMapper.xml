@@ -22,6 +22,12 @@
         where id = #{id}
     </select>
 
+    <!-- 获取我的项目列表 -->
+    <select id="getMyProjects" resultType="project">
+        select * from metadata.project
+        where host = #{hostname}
+    </select>
+
     <!-- 更新指定id项目 -->
     <update id="updateProject">
         update metadata.project

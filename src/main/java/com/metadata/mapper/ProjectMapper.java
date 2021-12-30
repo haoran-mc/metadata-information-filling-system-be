@@ -37,6 +37,13 @@ public interface ProjectMapper {
     Project getProjectById(@Param("id") int id);
 
     /**
+     * 获取我的项目列表
+     * @param hostname 主持人
+     * @return
+     */
+    List<Project> getMyProjects(@Param("hostname") String hostname);
+
+    /**
      * 更新指定id项目mapper
      * @param project project对象
      */
