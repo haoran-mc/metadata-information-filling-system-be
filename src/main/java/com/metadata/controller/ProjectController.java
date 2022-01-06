@@ -3,13 +3,13 @@ package com.metadata.controller;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Project;
 import com.metadata.service.ProjectService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("projects")
 public class ProjectController {
     @Autowired
     ProjectService projectService;
@@ -17,16 +17,16 @@ public class ProjectController {
     /**
      * 获取指定名称项目
      * @param year 年份
-     * @param batch_idx 批次
+     * @param batchIdx 批次
      * @param name 名称
      * @return project对象集
      */
-    @GetMapping
+    @GetMapping("projects/{year}/{batch_idx}")
     public Result selectProjectByName(
-            @RequestParam(name = "year") int year,
-            @RequestParam(name = "batch_idx") int batch_idx,
+            @PathVariable(name = "year") int year,
+            @PathVariable(name = "batch_idx") int batchIdx,
             @RequestParam(name = "project_name") String name) {
-        List<Project> projectList = projectService.selectProjectByName(year, batch_idx, name);
+        List<Project> projectList = projectService.selectProjectByName(year, batchIdx, name);
         return Result.success(projectList);
     }
 
@@ -35,7 +35,7 @@ public class ProjectController {
      * @param id 项目 id
      * @return null
      */
-    @DeleteMapping
+    @DeleteMapping("project")
     public Result deleteProjectById(@RequestParam(name = "id") int id) {
         projectService.deleteProjectById(id);
         return Result.success(null);
@@ -46,7 +46,7 @@ public class ProjectController {
      * @param project project对象
      * @return null
      */
-    @PutMapping
+    @PutMapping("project")
     public Result updateProjectById(@RequestBody Project project) {
         projectService.updateProject(project);
         return Result.success(null);

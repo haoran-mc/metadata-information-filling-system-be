@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
-@RequestMapping("accounts")
+@RequestMapping("account")
 public class AccountController {
     @Autowired
     UserService userService;

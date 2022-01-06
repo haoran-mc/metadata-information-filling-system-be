@@ -20,7 +20,6 @@ import java.util.List;
 
 @Api(tags = "用户类接口")
 @RestController
-@RequestMapping("users")
 public class UserController {
 
     @Autowired
@@ -40,7 +39,7 @@ public class UserController {
      * @return user对象
      */
     @ApiOperation("获取用户个人资料的接口") //controller层swagger注释示例
-    @GetMapping("info")
+    @GetMapping("user/info")
     public Result getUserInfo(@ApiParam("前端传来用户手机号码") @RequestParam(name = "userPhone") String userPhone) {
         //参数可写HttpServletRequest request
         //String userPhone = request.getParameter("userPhone");
@@ -53,32 +52,31 @@ public class UserController {
      * @param user user对象
      * @return null
      */
-    @PutMapping("info")
+    @PutMapping("user/info")
     public Result updateUserInfo(@RequestBody User user) {
         userService.updateUser(user);
         return Result.success(null);
     }
-
 
     /**
      * 获取用户所填写书籍的详细信息
      * @param id 用户 id
      * @return project/textbook对象
      */
-    @GetMapping("batches")
+    @GetMapping("user/batches")
     public Result getMyFilling(@RequestParam(name = "id") int id) {
         UserFillingDto userFillingDto = userService.getUserAllFillings(id);
         return Result.success(userFillingDto);
     }
 
-    @GetMapping("data/projects")
+    @GetMapping("user/data/projects")
     public Result getMyProjects(@RequestParam(name = "id") int id) {
         User user = userService.getUserById(id);
         List<Project> projectList = projectService.getMyProjects(user.getUsername());
         return Result.success(projectList);
     }
 
-    @GetMapping("data/textbooks")
+    @GetMapping("user/data/textbooks")
     public Result getMyTextbooks(@RequestParam(name = "id") int id) {
         User user = userService.getUserById(id);
         List<Textbook> textbookList = textbookService.getMyTextbooks(user.getUsername());

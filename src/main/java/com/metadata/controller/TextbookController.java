@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("textbooks")
 public class TextbookController {
     @Autowired
     TextbookService textbookService;
@@ -17,16 +16,16 @@ public class TextbookController {
     /**
      * 获取指定名称书籍
      * @param year 年份
-     * @param batch_idx 批次
+     * @param batchIdx 批次
      * @param name 名称
      * @return textbook对象集
      */
-    @GetMapping
+    @GetMapping("textbooks")
     public Result selectTextbookByTextbookName(
             @RequestParam(name = "year") int year,
-            @RequestParam(name = "batch_idx") int batch_idx,
-            @RequestParam(name = "textbookName") String name) {
-        List<Textbook> textbookList = textbookService.selectTextbookByName(year, batch_idx, name);
+            @RequestParam(name = "batch_idx") int batchIdx,
+            @RequestParam(name = "textbook_name") String name) {
+        List<Textbook> textbookList = textbookService.selectTextbookByName(year, batchIdx, name);
         return Result.success(textbookList);
     }
 
@@ -35,7 +34,7 @@ public class TextbookController {
      * @param id 教材 id
      * @return null
      */
-    @DeleteMapping
+    @DeleteMapping("textbook")
     public Result deleteTextbookById(@RequestParam(name = "id") int id) {
         textbookService.deleteTextbook(id);
         return Result.success(null);
@@ -46,7 +45,7 @@ public class TextbookController {
      * @param textbook textbook对象
      * @return null
      */
-    @PutMapping
+    @PutMapping("textbook")
     public Result updateTextbook(@RequestBody Textbook textbook) {
         textbookService.updateTextbook(textbook);
         return Result.success(null);
