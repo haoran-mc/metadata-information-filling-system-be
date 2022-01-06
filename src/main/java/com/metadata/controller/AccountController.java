@@ -85,6 +85,7 @@ public class AccountController {
 
     @GetMapping("logout")
     public Result logout() {
+        StpUtil.logout();
         return Result.success(null);
     }
 }
