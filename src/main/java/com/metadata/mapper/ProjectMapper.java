@@ -54,4 +54,6 @@ public interface ProjectMapper {
      * @param project project对象
      */
     void updateProject(@Param("project") Project project);
+
+    int getSpProjectId();
 }

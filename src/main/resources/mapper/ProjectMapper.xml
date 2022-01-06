@@ -46,18 +46,24 @@
         set
             name = #{project.name},
             host = #{project.host},
-            username = #{project.username},
-            category_first_level = #{project.category_first_level},
-            category_second_level = #{project.category_second_level},
-            category_third_level = #{project.category_third_level},
+            preparer = #{project.preparer},
+            category_first_level = #{project.categoryFirstLevel},
+            category_second_level = #{project.categorySecondLevel},
+            category_third_level = #{project.categoryThirdLevel},
             department = #{project.department},
             money = #{project.money},
-            start_time = #{project.start_time},
-            end_time = #{project.end_time},
+            start_time = #{project.startTime},
+            end_time = #{project.endTime},
             number = #{project.number},
-            attachment_path = #{project.attachment_path},
+            attachment_path = #{project.attachmentPath},
             year = #{project.year},
-            batch = #{project.batch}
+            batch_idx = #{project.batchIdx},
+            expand = #{project.expand}
         where id = #{project.id}
     </update>
+
+    <!-- 获取 project 表最新记录的 id -->
+    <select id="getSpProjectId" resultType="int">
+        select max(id) from metadata.project
+    </select>
 </mapper>

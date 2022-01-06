@@ -16,7 +16,6 @@ public class StpInterfaceImpl implements StpInterface {
 
     @Override
     public List<String> getPermissionList(Object loginId, String loginType) {
-        System.out.println("--");
         return null;
     }
 
@@ -27,8 +26,6 @@ public class StpInterfaceImpl implements StpInterface {
         System.out.println("role: " + user.getRole());
 
         List<String> list = new ArrayList<String>();
-
-        System.out.println("--" + user.getRole());
 
         list.add(user.getRole());
         return list;

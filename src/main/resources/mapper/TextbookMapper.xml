@@ -7,7 +7,7 @@
     <!-- 获取指定名称书籍 -->
     <select id="selectTextbookByName" resultType="textbook">
         select * from metadata.textbook
-        where year = #{year} and batch = #{batch_idx} and name like concat('%', #{name}, '%')
+        where year = #{year} and batch = #{batchIdx} and name like concat('%', #{name}, '%')
     </select>
 
     <!-- 插入新书籍 -->
@@ -27,7 +27,7 @@
     </delete>
 
     <!-- 获取指定id书籍 -->
-    <select id="getTextbookById">
+    <select id="getTextbookById" resultType="textbook">
         select * from metadata.textbook
         where id = #{id}
     </select>
@@ -42,14 +42,20 @@
         update metadata.textbook
         set
             name = #{textbook.name},
-            phone = #{textbook.phone},
+            preparer = #{textbook.preparer},
             editor = #{textbook.editor},
-            publishing_house = #{textbook.publishing_house},
-            publishing_time = #{textbook.publishing_time},
-            selection_time = #{textbook.selection_time},
-            attachment_path = #{textbook.attachment_path},
+            publishing_house = #{textbook.publishingHouse},
+            publishing_time = #{textbook.publishingTime},
+            selection_time = #{textbook.selectionTime},
+            attachment_path = #{textbook.attachmentPath},
             year = #{textbook.year},
-            batch = #{textbook.batch}
+            batch_idx = #{textbook.batchIdx},
+            expand = #{textbook.expand}
         where id = #{textbook.id}
     </update>
+
+    <!-- 获取 Textbook 表最新记录的 id -->
+    <select id="getSpTextbookId" resultType="int">
+        select max(id) from metadata.textbook
+    </select>
 </mapper>

@@ -8,7 +8,7 @@ public interface TextbookService {
     /**
      * 获取指定名称书籍service
      * @param year 年份
-     * @param batch_idx 批次
+     * @param batchIdx 批次
      * @param name 名称
      * @return textbook对象集
      */

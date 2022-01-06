@@ -5,6 +5,12 @@
 <mapper namespace="com.metadata.mapper.SpMapper">
     <select id="getSpByYearBatchIdx" resultType="sp">
         select * from metadata.sp
-        where year = #{year} and batch_idx = #{batch}
+        where year = #{year} and batch_idx = #{batchIdx}
     </select>
+
+    <!-- 插入新的 sp 记录 -->
+    <insert id="addSp">
+        insert metadata.sp (year, batch_idx, project_id, textbook_id)
+        values (#{sp.year}, #{sp.batchIdx}, #{sp.projectId}, #{sp.textbookId})
+    </insert>
 </mapper>

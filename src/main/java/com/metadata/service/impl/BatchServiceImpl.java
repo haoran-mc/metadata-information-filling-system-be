@@ -1,5 +1,6 @@
 package com.metadata.service.impl;
 
+import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.mapper.BatchMapper;
@@ -16,46 +17,45 @@ public class BatchServiceImpl implements BatchService {
     BatchMapper batchMapper;
 
     /**
+     * 获取所有批次
+     *
+     * @return batch对象集
+     */
+    @Override
+    public List<Batch> getAllBatches() {
+        return batchMapper.getAllBatches();
+    }
+
+    /**
      * 获取指定批次的项目impl
      *
-     * @param year      年份
-     * @param batch     批次
-     * @param page_num  页码
-     * @param page_size 分页尺寸
+     * @param year     年份
+     * @param batchIdx    批次
+     * @param pageNum  页码
+     * @param pageSize 分页尺寸
      * @return project对象集
      */
     @Override
-    public List<Project> getBatchProject(int year, int batch, int page_num, int page_size) {
-        return batchMapper.getBatchProject(year, batch, page_num, page_size);
+    public List<Project> getBatchProject(int year, int batchIdx, int pageNum, int pageSize) {
+        return batchMapper.getBatchProject(year, batchIdx, pageNum, pageSize);
     }
 
     /**
      * 获取指定批次的书籍impl
      *
-     * @param year      年份
-     * @param batch     批次
-     * @param page_num  页码
-     * @param page_size 分页尺寸
+     * @param year     年份
+     * @param batchIdx    批次
+     * @param pageNum  页码
+     * @param pageSize 分页尺寸
      * @return textbook对象集
      */
     @Override
-    public List<Textbook> getBatchTextbook(int year, int batch, int page_num, int page_size) {
-        return batchMapper.getBatchTextbook(year, batch, page_num, page_size);
+    public List<Textbook> getBatchTextbook(int year, int batchIdx, int pageNum, int pageSize) {
+        return batchMapper.getBatchTextbook(year, batchIdx, pageNum, pageSize);
     }
 
-    /**
-     * 插入新的填报impl
-     *
-     * @param project  project对象
-     * @param textbook textbook对象
-     */
     @Override
-    public void addFilling(Project project, Textbook textbook) {
-        if (project != null) {
-            batchMapper.addProject(project);
-        }
-        if (textbook != null) {
-            batchMapper.addTextbook(textbook);
-        }
+    public int getMaxIdxByYear(int year) {
+        return batchMapper.getMaxIdxByYear(year);
     }
 }

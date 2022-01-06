@@ -3,12 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.metadata.mapper.BatchMapper">
+    <!-- 获取所有批次 -->
+    <select id="getAllBatches" resultType="batch">
+        select * from metadata.batch
+    </select>
+
+    <!-- 插入新的批次 -->
+    <insert id="addBatch">
+        insert into metadata.batch (year, batch_idx, name, end_time)
+        values (#{batch.year}, #{batch.batchIdx}, #{batch.name}, #{batch.endTime})
+    </insert>
+
     <!-- 获取指定批次的项目 -->
     <select id="getBatchProject" resultType="project">
         select * from metadata.project
-        where year = #{year} and batch = #{batch}
-        <if test="page_num!=null and page_size!=null">
-            limit #{page_num}, #{page_size}
+        where year = #{year} and batch_idx = #{batchIdx}
+        <if test="pageNum!=null and pageSize!=null">
+            limit #{pageNum}, #{pageSize}
         </if>
     </select>
     
@@ -19,9 +30,9 @@
     <!-- 获取指定批次的书籍 -->
     <select id="getBatchTextbook" resultType="textbook">
         select * from metadata.textbook
-        where year = #{year} and batch = #{batch}
-        <if test="page_num!=null and page_size!=null">
-            limit #{page_num}, #{page_size}
+        where year = #{year} and batch_idx = #{batchIdx}
+        <if test="pageNum!=null and pageSize!=null">
+            limit #{pageNum}, #{pageSize}
         </if>
     </select>
 
@@ -29,25 +40,7 @@
         select count(*) from metadata.textbook
     </select>
 
-    <!-- 插入新项目 -->
-    <insert id="addProject">
-        insert into metadata.project (name, host, phone, category_first_level,
-                             category_second_level, category_third_level,
-                             department, money, start_time, end_time, number,
-                             attachment_path, year, batch)
-        values (#{project.name}, #{project.host},  #{project.phone}, #{project.category_first_level},
-                #{project.category_second_level}, #{project.category_third_level},
-                #{project.department}, #{project.money}, #{project.start_time}, #{project.end_time}, #{project.number},
-                #{project.attachment_path}, #{project.year}, #{project.batch})
-    </insert>
-
-    <!-- 插入新书籍 -->
-    <insert id="addTextbook">
-        insert into metadata.textbook (name, phone, editor, publishing_house,
-                              publishing_time, selection_time, attachment_path,
-                              year, batch)
-        values (#{textbook.name}, #{textbook.phone}, #{textbook.editor}, #{textbook.publishing_house},
-                #{textbook.publishing_time}, #{textbook.selection_time}, #{textbook.attachment_path},
-                #{textbook.year}, #{textbook.batch})
-    </insert>
+    <select id="getMaxIdxByYear" resultType="int">
+        select max(batch_idx) from metadata.batch where year = #{year}
+    </select>
 </mapper>

@@ -34,7 +34,7 @@ public class AccountController {
     public Result login(@Validated @RequestBody LoginDto loginDto, HttpServletResponse response) {
         User user = userService.getUserByPhone(loginDto.getPhone());
 
-        // TODO Assert.isNull(user);
+        // Assert.notNull(user, "用户不存在");
 
         if (!user.getPassword().equals(SecureUtil.md5(loginDto.getPassword()))) {
             log.error("密码不正确");
@@ -51,6 +51,7 @@ public class AccountController {
         String token = StpUtil.getTokenValue();
 
         response.setHeader("Authorization", token);
+        // response.setHeader("satoken", token);
         response.setHeader("Access-control-Expose-Headers", "Authorization");
 
         // 这里不能返回 密码
