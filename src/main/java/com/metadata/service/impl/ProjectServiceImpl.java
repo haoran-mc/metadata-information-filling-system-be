@@ -26,6 +26,11 @@ public class ProjectServiceImpl implements ProjectService {
         return projectList;
     }
 
+    @Override
+    public void addProject(Project project) {
+        projectMapper.addProject(project);
+    }
+
     /**
      * 删除指定id项目impl
      * @param id 项目 id

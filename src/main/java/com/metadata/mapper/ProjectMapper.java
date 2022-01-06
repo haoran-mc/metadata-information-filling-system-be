@@ -24,6 +24,12 @@ public interface ProjectMapper {
     );
 
     /**
+     * 插入新项目mapper
+     * @param project project对象
+     */
+    void addProject(@Param("project") Project project);
+
+    /**
      * 删除指定id项目mapper
      * @param id 项目 id
      */

@@ -10,6 +10,16 @@
         where year = #{year} and batch = #{batch_idx} and name like concat('%', #{name}, '%')
     </select>
 
+    <!-- 插入新书籍 -->
+    <insert id="addTextbook">
+        insert into metadata.textbook (name, preparer, editor, publishing_house,
+                                       publishing_time, selection_time, attachment_path,
+                                       year, batch_idx, expand)
+        values (#{textbook.name}, #{textbook.preparer}, #{textbook.editor}, #{textbook.publishingHouse},
+                #{textbook.publishingTime}, #{textbook.selectionTime}, #{textbook.attachmentPath},
+                #{textbook.year}, #{textbook.batchIdx}, #{textbook.expand})
+    </insert>
+
     <!-- 删除指定id书籍 -->
     <delete id="deleteTextbook">
         delete from metadata.textbook

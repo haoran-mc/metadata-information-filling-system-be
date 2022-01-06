@@ -10,6 +10,18 @@
         where year = #{year} and batch = #{batch_idx} and name like concat('%',#{name},'%')
     </select>
 
+    <!-- 插入新项目 -->
+    <insert id="addProject">
+        insert into metadata.project (name, host, preparer, category_first_level,
+                                      category_second_level, category_third_level,
+                                      department, money, start_time, end_time, number,
+                                      attachment_path, year, batch_idx, expand)
+        values (#{project.name}, #{project.host},  #{project.preparer}, #{project.categoryFirstLevel},
+                #{project.categorySecondLevel}, #{project.categoryThirdLevel},
+                #{project.department}, #{project.money}, #{project.startTime}, #{project.endTime}, #{project.number},
+                #{project.attachmentPath}, #{project.year}, #{project.batchIdx}, #{project.expand})
+    </insert>
+
     <!-- 删除指定id项目 -->
     <delete id="deleteProjectById">
         delete from metadata.project

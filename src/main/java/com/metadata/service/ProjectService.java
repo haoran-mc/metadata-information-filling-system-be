@@ -15,6 +15,8 @@ public interface ProjectService {
      */
     List<Project> selectProjectByName(int year, int batch_idx, String name);
 
+    void addProject(Project project);
+
     /**
      * 删除指定id项目service
      * @param id 项目 id
