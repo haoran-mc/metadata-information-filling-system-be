@@ -1,16 +1,13 @@
 package com.metadata.controller;
 
-import cn.dev33.satoken.annotation.SaCheckLogin;
-import cn.dev33.satoken.annotation.SaCheckRole;
-import cn.dev33.satoken.annotation.SaMode;
-import cn.dev33.satoken.stp.StpUtil;
-import cn.hutool.json.JSONObject;
 import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Batch;
 import com.metadata.entity.Project;
 import com.metadata.entity.Textbook;
 import com.metadata.service.BatchService;
+import com.metadata.service.ProjectService;
+import com.metadata.service.TextbookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,37 +17,52 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("batches")
 public class BatchController {
     @Autowired
     BatchService batchService;
 
+    @Autowired
+    ProjectService projectService;
+
+    @Autowired
+    TextbookService textbookService;
+
     private final static Logger log = LoggerFactory.getLogger(BatchController.class);
+
+    /**
+     * 获取所有批次
+     *
+     * @return 所有批次列表
+     */
+    @GetMapping("batches")
+    public Result getAllBatches() {
+        List<Batch> batchList = batchService.getAllBatches();
+        return Result.success(batchList);
+    }
+
 
     /**
      * 获取指定批次的填报
      *
      * @param year      年份
-     * @param batch_idx 批次
+     * @param batchIdx 批次
      * @param category  类别 "project" or "textbook"
-     * @param page_num  页码
-     * @param page_size 分页尺寸
+     * @param pageNum  页码
+     * @param pageSize 分页尺寸
      * @return project/textbook对象集
      */
-    // @SaCheckLogin
-    // @SaCheckRole(value = {"user", "admin", "super_admin"}, mode = SaMode.OR)
-    @GetMapping
+    @GetMapping("batch/{year}/{batch_idx}")
     public Result getBatch(
-            @RequestParam(name = "year") int year,
-            @RequestParam(name = "batch_idx") int batch_idx,
+            @PathVariable(name = "year") int year,
+            @PathVariable(name = "batch_idx") int batchIdx,
             @RequestParam(name = "category") String category,
-            @RequestParam(name = "page_num") int page_num,
-            @RequestParam(name = "page_size") int page_size) {
+            @RequestParam(name = "page_num") int pageNum,
+            @RequestParam(name = "page_size") int pageSize) {
         if (category.equals("project")) {
-            List<Project> projectList = batchService.getBatchProject(year, batch_idx, page_num, page_size);
+            List<Project> projectList = batchService.getBatchProject(year, batchIdx, pageNum, pageSize);
             return Result.success(projectList);
         } else if (category.equals("textbook")) {
-            List<Textbook> textbookList = batchService.getBatchTextbook(year, batch_idx, page_num, page_size);
+            List<Textbook> textbookList = batchService.getBatchTextbook(year, batchIdx, pageNum, pageSize);
             return Result.success(textbookList);
         } else {
             log.error("数据传送失败");
