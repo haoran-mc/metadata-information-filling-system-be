@@ -76,11 +76,15 @@ public class BatchController {
      * @param userFillingDto 用户需要填写项目和教材
      * @return null
      */
-    @PostMapping
+    @PostMapping("batch")
+    // @SaCheckLogin
+    // @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
     public Result addFilling(@RequestBody UserFillingDto userFillingDto) {
         Project project = userFillingDto.getProject();
         Textbook textbook = userFillingDto.getTextbook();
-        batchService.addFilling(project, textbook);
+
+        projectService.addProject(project);
+        textbookService.addTextbook(textbook);
         return Result.success(null);
     }
 }
