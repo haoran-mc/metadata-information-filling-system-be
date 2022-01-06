@@ -22,6 +22,12 @@ public interface TextbookMapper {
     );
 
     /**
+     * 插入新书籍mapper
+     * @param textbook textbook对象
+     */
+    void addTextbook(@Param("textbook") Textbook textbook);
+
+    /**
      * 删除指定id书籍mapper
      * @param id 教材 id
      * @return null
@@ -35,7 +41,7 @@ public interface TextbookMapper {
      */
     Textbook getTextbookById(@Param("id") int id);
 
-    List<Textbook> getMyTextbooks(@Param("hostname") String hostname);
+    List<Textbook> getMyTextbooks(@Param("username") String username);
 
     /**
      * 更新指定id书籍mapper
@@ -43,4 +49,6 @@ public interface TextbookMapper {
      * @return null
      */
     void updateTextbook(@Param("textbook") Textbook textbook);
+
+    int getSpTextbookId();
 }

@@ -24,7 +24,7 @@
 
     <select id="getMyTextbooks" resultType="textbook">
         select * from metadata.textbook
-        where editor = #{hostname}
+        where editor = #{username}
     </select>
 
     <!-- 更新指定id书籍 -->

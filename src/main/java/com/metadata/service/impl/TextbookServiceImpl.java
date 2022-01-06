@@ -15,14 +15,19 @@ public class TextbookServiceImpl implements TextbookService {
     /**
      * 获取指定名称书籍impl
      * @param year 年份
-     * @param batch_idx 批次
+     * @param batchIdx 批次
      * @param name 名称
      * @return textbook对象集
      */
     @Override
-    public List<Textbook> selectTextbookByName(int year, int batch_idx, String name) {
-        List<Textbook> textbookList = textbookMapper.selectTextbookByName(year, batch_idx, name);
+    public List<Textbook> selectTextbookByName(int year, int batchIdx, String name) {
+        List<Textbook> textbookList = textbookMapper.selectTextbookByName(year, batchIdx, name);
         return textbookList;
+    }
+
+    @Override
+    public void addTextbook(Textbook textbook) {
+        textbookMapper.addTextbook(textbook);
     }
 
     /**
@@ -45,8 +50,8 @@ public class TextbookServiceImpl implements TextbookService {
         return textbookMapper.getTextbookById(id);
     }
 
-    public List<Textbook> getMyTextbooks(String hostname) {
-        return textbookMapper.getMyTextbooks(hostname);
+    public List<Textbook> getMyTextbooks(String username) {
+        return textbookMapper.getMyTextbooks(username);
     }
 
     /**

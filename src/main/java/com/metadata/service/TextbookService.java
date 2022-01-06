@@ -28,7 +28,7 @@ public interface TextbookService {
      */
     Textbook getTextbookById(int id);
 
-    List<Textbook> getMyTextbooks(String hostname);
+    List<Textbook> getMyTextbooks(String username);
 
     /**
      * 更新指定id书籍service
