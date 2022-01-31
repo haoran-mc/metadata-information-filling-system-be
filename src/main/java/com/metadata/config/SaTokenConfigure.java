@@ -16,6 +16,6 @@ public class SaTokenConfigure implements WebMvcConfigurer {
         // 注册注解拦截器，并排除不需要注解鉴权的接口地址 (与登录拦截器无关)
         registry.addInterceptor(new SaAnnotationInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/accounts/login");
+                .excludePathPatterns("/account/login");
     }
 }

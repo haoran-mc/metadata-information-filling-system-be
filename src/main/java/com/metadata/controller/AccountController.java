@@ -1,5 +1,8 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.annotation.SaMode;
 import cn.dev33.satoken.stp.StpUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.core.map.MapUtil;
@@ -43,16 +46,14 @@ public class AccountController {
 
         // 登录
         StpUtil.login(user.getId());
-        // 授权 -> StpInterfaceImpl
 
-        // StpInterfaceImpl(user.getId(), );
+        // 授权 -> StpInterfaceImpl
 
         // 获取 token
         String token = StpUtil.getTokenValue();
 
-        response.setHeader("Authorization", token);
-        // response.setHeader("satoken", token);
-        response.setHeader("Access-control-Expose-Headers", "Authorization");
+        response.setHeader("satoken", token);
+        response.setHeader("Access-control-Expose-Headers", "satoken");
 
         // 这里不能返回 密码
         return Result.success(MapUtil.builder()
@@ -72,8 +73,8 @@ public class AccountController {
 
         String token = jwtUtils.generateToken(String.valueOf(user.getId()));
 
-        response.setHeader("Authorization", token);
-        response.setHeader("Access-control-Expose-Headers", "Authorization");
+        response.setHeader("satoken", token);
+        response.setHeader("Access-control-Expose-Headers", "satoken");
 
         return Result.success(MapUtil.builder()
                 .put("id", user.getId())
@@ -85,6 +86,7 @@ public class AccountController {
     }
 
     @GetMapping("logout")
+    @SaCheckLogin
     public Result logout() {
         StpUtil.logout();
         return Result.success(null);

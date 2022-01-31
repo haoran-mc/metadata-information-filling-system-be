@@ -1,5 +1,8 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.annotation.SaMode;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -31,6 +34,7 @@ public class SpController {
     TextbookService textbookService;
 
     @PostMapping("metadata")
+    @SaCheckLogin
     public Result generateBatch(@RequestBody GenerateBatchDto generateBatchDto) {
         System.out.println(generateBatchDto);
 

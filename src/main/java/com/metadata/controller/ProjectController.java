@@ -1,5 +1,9 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Project;
 import com.metadata.service.ProjectService;
@@ -36,6 +40,8 @@ public class ProjectController {
      * @return null
      */
     @DeleteMapping("project")
+    @SaCheckLogin
+    @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
     public Result deleteProjectById(@RequestParam(name = "id") int id) {
         projectService.deleteProjectById(id);
         return Result.success(null);
@@ -47,6 +53,7 @@ public class ProjectController {
      * @return null
      */
     @PutMapping("project")
+    @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
     public Result updateProjectById(@RequestBody Project project) {
         projectService.updateProject(project);
         return Result.success(null);

@@ -1,5 +1,8 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Batch;
@@ -44,9 +47,9 @@ public class BatchController {
     /**
      * 获取指定批次的填报
      *
-     * @param year      年份
+     * @param year     年份
      * @param batchIdx 批次
-     * @param category  类别 "project" or "textbook"
+     * @param category 类别 "project" or "textbook"
      * @param pageNum  页码
      * @param pageSize 分页尺寸
      * @return project/textbook对象集
@@ -77,14 +80,17 @@ public class BatchController {
      * @return null
      */
     @PostMapping("batch")
-    // @SaCheckLogin
-    // @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
+    @SaCheckLogin
     public Result addFilling(@RequestBody UserFillingDto userFillingDto) {
         Project project = userFillingDto.getProject();
         Textbook textbook = userFillingDto.getTextbook();
 
-        projectService.addProject(project);
-        textbookService.addTextbook(textbook);
+        if (project != null) {
+            projectService.addProject(project);
+        }
+        if (textbook != null) {
+            textbookService.addTextbook(textbook);
+        }
         return Result.success(null);
     }
 }

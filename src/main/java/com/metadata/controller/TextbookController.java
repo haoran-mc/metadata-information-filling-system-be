@@ -1,5 +1,8 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckPermission;
+import cn.dev33.satoken.annotation.SaCheckRole;
+import cn.dev33.satoken.annotation.SaMode;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Textbook;
 import com.metadata.service.TextbookService;
@@ -35,6 +38,7 @@ public class TextbookController {
      * @return null
      */
     @DeleteMapping("textbook")
+    @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
     public Result deleteTextbookById(@RequestParam(name = "id") int id) {
         textbookService.deleteTextbook(id);
         return Result.success(null);
@@ -46,6 +50,7 @@ public class TextbookController {
      * @return null
      */
     @PutMapping("textbook")
+    @SaCheckRole(value = {"admin", "super_admin"}, mode = SaMode.OR)
     public Result updateTextbook(@RequestBody Textbook textbook) {
         textbookService.updateTextbook(textbook);
         return Result.success(null);

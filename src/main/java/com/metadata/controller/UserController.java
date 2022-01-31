@@ -1,5 +1,6 @@
 package com.metadata.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.metadata.common.dto.UserFillingDto;
 import com.metadata.common.lang.Result;
 import com.metadata.entity.Project;
@@ -40,6 +41,7 @@ public class UserController {
      */
     @ApiOperation("获取用户个人资料的接口") //controller层swagger注释示例
     @GetMapping("user/info")
+    @SaCheckLogin
     public Result getUserInfo(@ApiParam("前端传来用户手机号码") @RequestParam(name = "userPhone") String userPhone) {
         //参数可写HttpServletRequest request
         //String userPhone = request.getParameter("userPhone");
@@ -53,6 +55,7 @@ public class UserController {
      * @return null
      */
     @PutMapping("user/info")
+    @SaCheckLogin
     public Result updateUserInfo(@RequestBody User user) {
         userService.updateUser(user);
         return Result.success(null);
@@ -64,12 +67,14 @@ public class UserController {
      * @return project/textbook对象
      */
     @GetMapping("user/batches")
+    @SaCheckLogin
     public Result getMyFilling(@RequestParam(name = "id") int id) {
         UserFillingDto userFillingDto = userService.getUserAllFillings(id);
         return Result.success(userFillingDto);
     }
 
     @GetMapping("user/data/projects")
+    @SaCheckLogin
     public Result getMyProjects(@RequestParam(name = "id") int id) {
         User user = userService.getUserById(id);
         List<Project> projectList = projectService.getMyProjects(user.getUsername());
@@ -77,6 +82,7 @@ public class UserController {
     }
 
     @GetMapping("user/data/textbooks")
+    @SaCheckLogin
     public Result getMyTextbooks(@RequestParam(name = "id") int id) {
         User user = userService.getUserById(id);
         List<Textbook> textbookList = textbookService.getMyTextbooks(user.getUsername());
